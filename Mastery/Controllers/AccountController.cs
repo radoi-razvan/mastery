@@ -10,7 +10,7 @@ namespace Mastery.Controllers
 {
     [Authorize]
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("account")]
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -58,15 +58,17 @@ namespace Mastery.Controllers
 
             _logger.LogInformation($"Successful log in the user with email {loginDto.Email}. Token: {loggedUserDto.Token}");
 
+
             Response.Cookies.Append("jwt", loggedUserDto.Token, new CookieOptions
             {
                 HttpOnly = true,
-                Expires = DateTime.UtcNow.AddDays(1)
+                Expires = DateTime.UtcNow.AddDays(1),
             });
 
             return Ok(loggedUserDto);
         }
 
+   
         [Authorize(Roles = "Admin,Client")]
         //[Authorize(Roles = "Admin")]
         //[Authorize(Roles = "Client")]
@@ -99,8 +101,8 @@ namespace Mastery.Controllers
         }
 
         [Authorize(Roles = "Admin,Client")]
-        [HttpGet("currentUser")]
-        public async Task<ActionResult<LoggedUserDto>> GetCurrentUser()
+        [HttpGet("user")]
+        public async Task<ActionResult<LoggedUserDto>> GetUser()
         {
 
             //try
