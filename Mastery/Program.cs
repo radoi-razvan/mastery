@@ -33,22 +33,22 @@ builder.Services.AddIdentityCore<ApplicationUser>(options =>
                 .AddDefaultTokenProviders();
 
 // Enable Cors
-//builder.Services.AddCors(options =>
-//{
-//    options.AddPolicy("ReactApp",
-//        builder =>
-//        {
-//            builder.WithOrigins("http://localhost:3000");
-//        });
-//});
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("ReactApp",
         builder =>
         {
-            builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            builder.WithOrigins("http://localhost:3000");
         });
 });
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("ReactApp",
+//        builder =>
+//        {
+//            builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+//        });
+//});
 
 builder.Services.AddControllers();
 
@@ -98,16 +98,16 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 // Client configuration
-//app.UseCors(builder => builder
-//  .WithOrigins("http://localhost:3000")
-//  .AllowAnyMethod()
-//  .AllowAnyHeader()
-//  .AllowCredentials()
-//  .SetIsOriginAllowed(host => true));
-app.UseCors(x => x
-       .AllowAnyOrigin()
-       .AllowAnyMethod()
-       .AllowAnyHeader());
+app.UseCors(builder => builder
+  .WithOrigins("http://localhost:3000")
+  .AllowAnyMethod()
+  .AllowAnyHeader()
+  .AllowCredentials()
+  .SetIsOriginAllowed(host => true));
+//app.UseCors(x => x
+//       .AllowAnyOrigin()
+//       .AllowAnyMethod()
+//       .AllowAnyHeader());
 
 app.UseAuthentication();
 app.UseAuthorization();

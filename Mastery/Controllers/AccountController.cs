@@ -63,7 +63,9 @@ namespace Mastery.Controllers
             {
                 HttpOnly = true,
                 Expires = DateTime.UtcNow.AddDays(1),
-            });
+                Secure = true,
+                SameSite = SameSiteMode.None,
+        });
 
             return Ok(loggedUserDto);
         }
