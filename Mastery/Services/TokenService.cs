@@ -41,7 +41,7 @@ namespace Mastery.Services
                 issuer: null,
                 audience: null,
                 claims: claims,
-                expires: DateTime.Now.AddDays(7),
+                expires: DateTime.Now.AddDays(1),
                 signingCredentials: creds
             );
 
