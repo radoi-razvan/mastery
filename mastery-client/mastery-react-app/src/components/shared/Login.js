@@ -18,7 +18,6 @@ export const Login = () => {
         setError(response.error);
       } else {
         setUser(response.data);
-        //localStorage.setItem("jwt", response.data.token);
         setRedirect(true);
       }
     };

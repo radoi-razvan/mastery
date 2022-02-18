@@ -47,25 +47,35 @@ export const dataManager = {
         {
           email: logData.email,
           password: logData.password,
+        },
+        {
+          withCredentials: true,
         }
-        // {
-        //   withCredentials: true,
-        // }
       )
       .catch((e) => console.error(e));
     console.log(response.data);
     return response;
   },
   postLogout: async (token) => {
-    //console.log(localStorage.getItem("user").Token);
     const authAxios = axiosConfig(token);
     const response = await authAxios
-      .post(`/account/logout`, "", 
-      // {
-      //   withCredentials: true,
-      // }
+      .post(
+        `/account/logout`,
+        ""
+        // {
+        //   withCredentials: true,
+        // }
       )
       .catch((e) => console.error(e));
+    // const response = await axios
+    // .post(
+    //   `${process.env.REACT_APP_BASE_URL_BACKEND}/account/logout`,
+    //   "",
+    //   {
+    //     withCredentials: true,
+    //   }
+    // )
+    // .catch((e) => console.error(e));
     console.log(response.data);
     return response;
   },
