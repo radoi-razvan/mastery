@@ -70,14 +70,18 @@ namespace Mastery.Controllers
             return Ok(loggedUserDto);
         }
 
-   
         [Authorize(Roles = "Admin,Client")]
-        //[Authorize(Roles = "Admin")]
-        //[Authorize(Roles = "Client")]
         [HttpPost("logout")]
         public IActionResult Logout()
         {
-            Response.Cookies.Delete("jwt");
+
+            Response.Cookies.Delete("jwt", new CookieOptions
+            {
+                HttpOnly = true,
+                Expires = DateTime.UtcNow.AddDays(1),
+                Secure = true,
+                SameSite = SameSiteMode.None,
+            });
 
             _logger.LogInformation($"Successful logout");
 
@@ -106,40 +110,6 @@ namespace Mastery.Controllers
         [HttpGet("user")]
         public async Task<ActionResult<LoggedUserDto>> GetUser()
         {
-
-            //try
-            //{
-            //    var jwt = Request.Cookies["jwt"];
-            //    var token = _tokenService.Verify(jwt);
-            //    // var userId = token.Claims.ToArray()[2].Value;
-            //    var userName = token.Claims.ToArray()[1].Value;
-
-            //    var user = await _userService.GetByUsernameAsync(userName);
-
-            //    if (user == null)
-            //    {
-            //        return Unauthorized(new ProblemDetails { Title = "Not Logged in" });
-            //    }
-
-            //    return Ok(new LoggedUserDto
-            //    {
-            //        Id = user.Id,
-            //        UserName = user.Email,
-            //        Email = user.Email,
-            //        FirstName = user.FirstName,
-            //        LastName = user.LastName,
-            //        AdressTest = user.AdressTest,
-            //        TestField = user.TestField,
-            //        PhoneNumber = user.PhoneNumber,
-            //        PhoneNumberConfirmed = user.PhoneNumberConfirmed,
-            //        Token = await _tokenService.GenerateToken(user),
-            //        Role = (await _userManager.GetRolesAsync(user)).FirstOrDefault()
-            //    });
-            //}
-            //catch (Exception)
-            //{
-            //    return Unauthorized(new ProblemDetails { Title = "Not Logged in" });
-            //}
             var user = await _userService.GetByUsernameAsync(User.Identity?.Name);
 
             if (user == null)
