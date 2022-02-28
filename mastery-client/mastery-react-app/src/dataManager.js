@@ -1,28 +1,5 @@
 import axios from "axios";
 
-// const authAxios = axios.create({
-//   baseURL: `${process.env.REACT_APP_BASE_URL_BACKEND}`,
-//   headers: {
-//     Authorization: `Bearer ${accessToken}`,
-//   },
-// });
-
-const axiosConfig = (accessToken) => {
-  const authAxios = axios.create({
-    baseURL: `${process.env.REACT_APP_BASE_URL_BACKEND}`,
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
-  return authAxios;
-};
-
-// axios.interceptors.request.use((config) => {
-//   const token = localStorage.getItem("jwt");
-//   if (token) config.headers.Authorization = `Bearer ${token}`;
-//   return config;
-// });
-
 export const dataManager = {
   // Authentication requests
   postRegister: async (regData) => {
@@ -56,26 +33,16 @@ export const dataManager = {
     console.log(response.data);
     return response;
   },
-  postLogout: async (token) => {
-    const authAxios = axiosConfig(token);
-    const response = await authAxios
-      .post(
-        `/account/logout`,
-        ""
-        // {
-        //   withCredentials: true,
-        // }
-      )
-      .catch((e) => console.error(e));
-    // const response = await axios
-    // .post(
-    //   `${process.env.REACT_APP_BASE_URL_BACKEND}/account/logout`,
-    //   "",
-    //   {
-    //     withCredentials: true,
-    //   }
-    // )
-    // .catch((e) => console.error(e));
+  postLogout: async () => {
+    const response = await axios
+    .post(
+      `${process.env.REACT_APP_BASE_URL_BACKEND}/account/logout`,
+      "",
+      {
+        withCredentials: true,
+      }
+    )
+    .catch((e) => console.error(e));
     console.log(response.data);
     return response;
   },
