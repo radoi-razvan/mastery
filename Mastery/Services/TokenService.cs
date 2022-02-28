@@ -34,18 +34,14 @@ namespace Mastery.Services
                 claims.Add(new Claim(ClaimTypes.Role, role));
             }
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Mastery:JWTSettings:TokenKey"]));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512);
+            var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Mastery:JWTSettings:TokenKey"]));
+            var credentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256Signature);
+            var header = new JwtHeader(credentials);
 
-            var tokenOptions = new JwtSecurityToken(
-                issuer: null,
-                audience: null,
-                claims: claims,
-                expires: DateTime.Now.AddDays(1),
-                signingCredentials: creds
-            );
+            var payload = new JwtPayload(user.Id.ToString(), null, claims, null, DateTime.Today.AddDays(1));
+            var securityToken = new JwtSecurityToken(header, payload);
 
-            return new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+            return new JwtSecurityTokenHandler().WriteToken(securityToken);
         }
 
         public JwtSecurityToken Verify(string jwt)
@@ -64,4 +60,5 @@ namespace Mastery.Services
         }
 
     }
+
 }

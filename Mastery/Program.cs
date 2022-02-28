@@ -41,14 +41,6 @@ builder.Services.AddCors(options =>
             builder.WithOrigins("http://localhost:3000");
         });
 });
-//builder.Services.AddCors(options =>
-//{
-//    options.AddPolicy("ReactApp",
-//        builder =>
-//        {
-//            builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-//        });
-//});
 
 builder.Services.AddControllers();
 
@@ -79,6 +71,18 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                             builder.Configuration["Mastery:JWTSettings:TokenKey"])
                         )
                     };
+                    options.Events = new JwtBearerEvents
+                    {
+                        OnMessageReceived = context =>
+                        {
+                            if (context.Request.Cookies.ContainsKey("jwt"))
+                            {
+                                context.Token = context.Request.Cookies["jwt"];
+                            }
+                            return Task.CompletedTask;
+                        },
+                    };
+
                 });
 builder.Services.AddAuthorization();
 
@@ -102,12 +106,7 @@ app.UseCors(builder => builder
   .WithOrigins("http://localhost:3000")
   .AllowAnyMethod()
   .AllowAnyHeader()
-  .AllowCredentials()
-  .SetIsOriginAllowed(host => true));
-//app.UseCors(x => x
-//       .AllowAnyOrigin()
-//       .AllowAnyMethod()
-//       .AllowAnyHeader());
+  .AllowCredentials());
 
 app.UseAuthentication();
 app.UseAuthorization();
