@@ -9,7 +9,15 @@ export const Header = () => {
 
   const logoutEvent = async (e) => {
     e.preventDefault();
-    await dataManager.postLogout(user.token).then((response) => {
+    await dataManager.postLogout().then((response) => {
+      console.log(response);
+      console.log(response.data);
+    });
+  };
+
+  const getUserEvent = async (e) => {
+    e.preventDefault();
+    await dataManager.getUser().then((response) => {
       console.log(response);
       console.log(response.data);
     });
@@ -75,6 +83,12 @@ export const Header = () => {
                 </li>
                 <button className="text-danger" onClick={(e) => logoutEvent(e)}>
                   logout test
+                </button>
+                <button
+                  className="text-danger"
+                  onClick={(e) => getUserEvent(e)}
+                >
+                  getUser
                 </button>
               </>
             )}
