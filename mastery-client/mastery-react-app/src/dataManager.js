@@ -2,17 +2,17 @@ import axios from "axios";
 
 export const dataManager = {
   // Authentication requests
-  postRegister: async (regData) => {
+  postRegister: async (registerData) => {
     const response = await axios
-      .post(`${process.env.REACT_APP_BASE_URL_BACKEND}/register`, {
-        firstName: regData.firstName,
-        lastName: regData.lastName,
-        addressTest: regData.addressTest,
-        testField: regData.testField,
-        role: regData.role,
-        email: regData.email,
-        password: regData.password,
-        userRole: regData.userRole,
+      .post(`${process.env.REACT_APP_BASE_URL_BACKEND}/account/register`, {
+        firstName: registerData.firstName,
+        lastName: registerData.lastName,
+        email: registerData.email,
+        password: registerData.password,
+        role: registerData.role,
+        addressTest: registerData.addressTest,
+        testField: registerData.testField,
+        phoneNumber: registerData.phoneNumber,
       })
       .catch((e) => console.error(e));
     return response;
@@ -30,20 +30,14 @@ export const dataManager = {
         }
       )
       .catch((e) => console.error(e));
-    console.log(response.data);
     return response;
   },
   postLogout: async () => {
     const response = await axios
-    .post(
-      `${process.env.REACT_APP_BASE_URL_BACKEND}/account/logout`,
-      "",
-      {
+      .post(`${process.env.REACT_APP_BASE_URL_BACKEND}/account/logout`, "", {
         withCredentials: true,
-      }
-    )
-    .catch((e) => console.error(e));
-    console.log(response.data);
+      })
+      .catch((e) => console.error(e));
     return response;
   },
   getUser: async () => {
