@@ -1,17 +1,31 @@
-import React from "react";
-import { Link, useLinkClickHandler } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
-import { state } from "../../state";
+import { userSetter } from "../../state";
 import { dataManager } from "../../dataManager";
 
 export const Header = () => {
-  const [user] = useAtom(state.user);
+  const [user, setUser] = useAtom(userSetter);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setUser();
+  }, []);
 
   const logoutEvent = async (e) => {
     e.preventDefault();
+
+    const loader = (response) => {
+      if (response.error) {
+        console.log(response.error);
+      } else {
+        setUser();
+        navigate("/");
+      }
+    };
+
     await dataManager.postLogout().then((response) => {
-      console.log(response);
-      console.log(response.data);
+      loader(response);
     });
   };
 
@@ -19,7 +33,6 @@ export const Header = () => {
     e.preventDefault();
     await dataManager.getUser().then((response) => {
       console.log(response);
-      console.log(response.data);
     });
   };
 
@@ -73,23 +86,15 @@ export const Header = () => {
               <>
                 <li className="nav-item navbar-text">{user.email}</li>
                 <li className="nav-item">
-                  <Link
-                    className="nav-link active"
-                    aria-current="page"
-                    to="/logout"
-                  >
+                  <button className="" onClick={(e) => logoutEvent(e)}>
                     Logout
-                  </Link>
+                  </button>
                 </li>
-                <button className="text-danger" onClick={(e) => logoutEvent(e)}>
-                  logout test
-                </button>
-                <button
-                  className="text-danger"
-                  onClick={(e) => getUserEvent(e)}
-                >
-                  getUser
-                </button>
+                <li className="nav-item">
+                  <button className="" onClick={(e) => getUserEvent(e)}>
+                    GetUser
+                  </button>
+                </li>
               </>
             )}
           </ul>
