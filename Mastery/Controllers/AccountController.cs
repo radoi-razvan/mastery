@@ -29,7 +29,7 @@ namespace Mastery.Controllers
 
         [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<ActionResult<LoggedUserDto>> Login(LoginDto loginDto)
+        public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
             var user = await _userManager.FindByEmailAsync(loginDto.Email);
 
@@ -39,27 +39,14 @@ namespace Mastery.Controllers
                 {
                     _logger.LogInformation($"Failed login the user with email {loginDto.Email}. [ Wrong password ]");
                 }
-                return Unauthorized(new ProblemDetails { Title = "Wrong email/password" });
+                return Unauthorized(new ProblemDetails { Title = "Invalid credentials" });
             }
 
-            var loggedUserDto = new LoggedUserDto
-            {
-                Id = user.Id,
-                UserName = user.Email,
-                Email = user.Email,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                AdressTest = user.AdressTest,
-                TestField = user.TestField,
-                PhoneNumber = user.PhoneNumber,
-                Token = await _tokenService.GenerateToken(user),
-                Role = (await _userManager.GetRolesAsync(user)).FirstOrDefault()
-            };
-
-            _logger.LogInformation($"Successful log in the user with email {loginDto.Email}. Token: {loggedUserDto.Token}");
+            var token = await _tokenService.GenerateToken(user);
+            _logger.LogInformation($"Successful log in the user with email {loginDto.Email}. Token: {token}");
 
 
-            Response.Cookies.Append("jwt", loggedUserDto.Token, new CookieOptions
+            Response.Cookies.Append("jwt", token, new CookieOptions
             {
                 HttpOnly = true,
                 Expires = DateTime.UtcNow.AddDays(1),
@@ -67,7 +54,10 @@ namespace Mastery.Controllers
                 SameSite = SameSiteMode.None,
         });
 
-            return Ok(loggedUserDto);
+            return Ok(new
+            {
+                message = "Successful login"
+            });
         }
 
         [Authorize(Roles = "Admin,Client")]
@@ -87,7 +77,7 @@ namespace Mastery.Controllers
 
             return Ok(new
             {
-                message = "success"
+                message = "Successful logout"
             });
         }
 
@@ -103,21 +93,23 @@ namespace Mastery.Controllers
             }
 
             _logger.LogInformation($"New account created with email {registerDto.Email}");
+
             return StatusCode(201);
         }
 
-        [Authorize(Roles = "Admin,Client")]
+        [AllowAnonymous]
         [HttpGet("user")]
-        public async Task<ActionResult<LoggedUserDto>> GetUser()
+        public async Task<ActionResult<UserDto>> GetUser()
         {
             var user = await _userService.GetByUsernameAsync(User.Identity?.Name);
 
             if (user == null)
             {
-                return Unauthorized(new ProblemDetails { Title = "Not Logged in" });
+                //return Unauthorized(new ProblemDetails { Title = "Not Logged in" });
+                return Ok(new { });
             }
 
-            return Ok(new LoggedUserDto
+            return Ok(new UserDto
             {
                 Id = user.Id,
                 UserName = user.Email,
@@ -128,7 +120,6 @@ namespace Mastery.Controllers
                 TestField = user.TestField,
                 PhoneNumber = user.PhoneNumber,
                 PhoneNumberConfirmed = user.PhoneNumberConfirmed,
-                Token = await _tokenService.GenerateToken(user),
                 Role = (await _userManager.GetRolesAsync(user)).FirstOrDefault()
             });
         }
