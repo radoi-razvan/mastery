@@ -10,8 +10,8 @@ export const dataManager = {
         email: registerData.email,
         password: registerData.password,
         role: registerData.role,
-        addressTest: registerData.addressTest,
-        testField: registerData.testField,
+        country: registerData.country,
+        city: registerData.city,
         phoneNumber: registerData.phoneNumber,
       })
       .catch((e) => console.error(e));

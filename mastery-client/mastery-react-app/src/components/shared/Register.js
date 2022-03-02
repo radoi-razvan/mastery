@@ -25,8 +25,8 @@ export const Register = () => {
         email: e.target.email.value,
         password: e.target.password.value,
         role: e.target.role.value,
-        addressTest: e.target.addressTest.value,
-        testField: e.target.testField.value,
+        country: e.target.country.value,
+        city: e.target.city.value,
         phoneNumber: e.target.phoneNumber.value,
       })
       .then((response) => {
@@ -65,7 +65,6 @@ export const Register = () => {
                       </p>
 
                       <form onSubmit={handleSubmit} className="row">
-                        
                         <div className="mb-3 col col-md-6">
                           <label htmlFor="firstName" className="form-label">
                             First Name
@@ -126,31 +125,31 @@ export const Register = () => {
                             name="role"
                             required
                           >
-                            <option value="Admin"> Admin </option>
+                            <option value="Mentor"> Mentor </option>
                             <option value="Client"> Client </option>
                           </select>
                         </div>
                         <div className="mb-3 col col-md-6">
-                          <label htmlFor="addressTest" className="form-label">
-                            Address Test
+                          <label htmlFor="country" className="form-label">
+                            Country
                           </label>
                           <input
                             type="text"
                             className="form-control"
-                            id="addressTest"
-                            name="addressTest"
+                            id="country"
+                            name="country"
                             required
                           />
                         </div>
                         <div className="mb-3 col col-md-6">
-                          <label htmlFor="testField" className="form-label">
-                            Test Field
+                          <label htmlFor="city" className="form-label">
+                            City
                           </label>
                           <input
                             type="text"
                             className="form-control"
-                            id="testField"
-                            name="testField"
+                            id="city"
+                            name="city"
                             required
                           />
                         </div>
