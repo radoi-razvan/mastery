@@ -60,7 +60,7 @@ namespace Mastery.Controllers
             });
         }
 
-        [Authorize(Roles = "Admin,Client")]
+        [Authorize(Roles = "Mentor,Client")]
         [HttpPost("logout")]
         public IActionResult Logout()
         {
@@ -116,8 +116,8 @@ namespace Mastery.Controllers
                 Email = user.Email,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                AdressTest = user.AdressTest,
-                TestField = user.TestField,
+                Country = user.Country,
+                City = user.City,
                 PhoneNumber = user.PhoneNumber,
                 PhoneNumberConfirmed = user.PhoneNumberConfirmed,
                 Role = (await _userManager.GetRolesAsync(user)).FirstOrDefault()

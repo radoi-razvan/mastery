@@ -14,9 +14,9 @@ namespace Mastery.DTOs
         [Required]
         public string? Role { get; set; }
         [Required]
-        public string? AddressTest { get; set; }
+        public string? Country { get; set; }
         [Required]
-        public string? TestField { get; set; }
+        public string? City { get; set; }
         public string? PhoneNumber { get; set; }
     }
 }
