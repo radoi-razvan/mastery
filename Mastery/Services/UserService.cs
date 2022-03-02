@@ -33,8 +33,8 @@ namespace Mastery.Services
                 Email = registerDto.Email,
                 FirstName = registerDto.FirstName,
                 LastName = registerDto.LastName,
-                AdressTest = registerDto.AddressTest,
-                TestField = registerDto.TestField,
+                Country = registerDto.Country,
+                City = registerDto.City,
                 PhoneNumber = registerDto.PhoneNumber,
                 PhoneNumberConfirmed = false
             };

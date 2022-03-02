@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Mastery.Models
@@ -11,9 +10,8 @@ namespace Mastery.Models
         [Column(TypeName = "varchar(30)")]
         public string? LastName { get; set; }
         [Column(TypeName = "varchar(100)")]
-        public string? AdressTest { get; set; }
+        public string? Country { get; set; }
         [Column(TypeName = "varchar(100)")]
-        public string? TestField { get; set; }
-
+        public string? City { get; set; }
     }
 }
