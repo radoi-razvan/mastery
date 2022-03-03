@@ -27,6 +27,7 @@ namespace Mastery.Controllers
             _userService = userService;
         }
 
+        // POST: account/login
         [AllowAnonymous]
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
@@ -60,6 +61,7 @@ namespace Mastery.Controllers
             });
         }
 
+        // POST: account/logout
         [Authorize(Roles = "Mentor,Client")]
         [HttpPost("logout")]
         public IActionResult Logout()
@@ -81,6 +83,7 @@ namespace Mastery.Controllers
             });
         }
 
+        // POST: account/register
         [AllowAnonymous]
         [HttpPost("register")]
         public async Task<ActionResult> Register(RegisterDto registerDto)
@@ -97,31 +100,34 @@ namespace Mastery.Controllers
             return StatusCode(201);
         }
 
+        // GET: account/user
         [AllowAnonymous]
         [HttpGet("user")]
         public async Task<ActionResult<UserDto>> GetUser()
         {
-            var user = await _userService.GetByUsernameAsync(User.Identity?.Name);
-
-            if (user == null)
+            var userName = User.Identity?.Name;
+            if (userName is not null)
             {
-                //return Unauthorized(new ProblemDetails { Title = "Not Logged in" });
-                return Ok(new { });
+                var user = await _userService.GetByUsernameAsync(userName);
+                if (user is not null)
+                {
+                    return Ok(new UserDto
+                    {
+                        Id = user.Id,
+                        UserName = user.Email,
+                        Email = user.Email,
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        Country = user.Country,
+                        City = user.City,
+                        PhoneNumber = user.PhoneNumber,
+                        PhoneNumberConfirmed = user.PhoneNumberConfirmed,
+                        Role = (await _userManager.GetRolesAsync(user)).FirstOrDefault()
+                    });
+                }
             }
 
-            return Ok(new UserDto
-            {
-                Id = user.Id,
-                UserName = user.Email,
-                Email = user.Email,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Country = user.Country,
-                City = user.City,
-                PhoneNumber = user.PhoneNumber,
-                PhoneNumberConfirmed = user.PhoneNumberConfirmed,
-                Role = (await _userManager.GetRolesAsync(user)).FirstOrDefault()
-            });
+            return Ok(new { });
         }
 
     }
