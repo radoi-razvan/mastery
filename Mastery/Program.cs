@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using AutoMapper;
+using Mastery.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,6 +49,16 @@ builder.Services.AddControllers();
 // Intilialize services
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<TokenService>();
+builder.Services.AddScoped<ICourseService, CourseService>();
+builder.Services.AddScoped<ITestimonialService, TestimonialService>();
+
+// Auto Mapper Configurations
+var mapperConfig = new MapperConfiguration(mc =>
+{
+    mc.AddProfile(new MappingProfile());
+});
+IMapper mapper = mapperConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
