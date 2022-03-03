@@ -11,12 +11,12 @@ namespace Mastery.Data
         {
         }
 
-        public DbSet<ApplicationUser> ?ApplicationUsers { get; set; }
-        public DbSet<Course> ?Courses { get; set; }
-        public DbSet<Week> ?Weeks { get; set; }
-        public DbSet<Testimonial> ?Testimonials { get; set; }
-        public DbSet<CourseWeek> ?CourseWeeks { get; set; }
-        public DbSet<CourseClient> ?CourseClients { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; } = null!;
+        public DbSet<Course> Courses { get; set; } = null!;
+        public DbSet<Week> Weeks { get; set; } = null!;
+        public DbSet<Testimonial> Testimonials { get; set; } = null!;
+        public DbSet<CourseWeek> CourseWeeks { get; set; } = null!;
+        public DbSet<CourseClient> CourseClients { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
