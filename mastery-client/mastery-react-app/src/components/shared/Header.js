@@ -37,9 +37,9 @@ export const Header = () => {
   };
 
   return (
-    <header className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <header className="navbar navbar-expand-lg navbar-light bg-light nav-bg-color">
       <div className="container">
-        <Link className="navbar-brand" to="/">
+        <Link className="navbar-brand app-logo" to="/">
           MASTERY
         </Link>
         <button
@@ -56,12 +56,12 @@ export const Header = () => {
         <nav className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/">
+              <Link className="nav-link active nav-btn" aria-current="page" to="/">
                 Home
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/posts">
+              <Link className="nav-link nav-btn" to="/posts">
                 Posts
               </Link>
             </li>
@@ -72,12 +72,12 @@ export const Header = () => {
             Object.getPrototypeOf(user) === Object.prototype ? (
               <>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/register">
+                  <Link className="nav-link nav-btn" to="/register">
                     Register
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/login">
+                  <Link className="nav-link nav-btn" to="/login">
                     Login
                   </Link>
                 </li>

@@ -1,3 +1,105 @@
-.input-form {
-    padding-top: 6em;
-  }
+.main-banner .caption h6 {
+  margin: auto;
+  width: 50%;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: white;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.main-banner .caption h2 {
+  margin: auto;
+  width: 50%;
+  margin-top: 3em;
+  font-size: 60px;
+  font-weight: 800;
+  color: white;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.main-banner .caption h2 em {
+  font-style: normal;
+  color: white;
+  font-weight: 900;
+}
+
+.welcome-page {
+  background: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),
+    url("/src/img/welcome-page.jpg");
+  background-size: cover;
+  height:84.1vh;
+}
+
+.card {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+  transition: 0.3s;
+  margin: auto;
+  width: 35%;
+  padding: 10px;
+}
+
+.card:hover {
+  box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.4);
+}
+
+.card-container {
+  padding: 2px 16px;
+}
+
+.form-btn {
+  background-color: #219ebc !important;
+  color: white !important;
+  border: 2px solid #219ebc;
+  border-radius: 5%;
+  font-weight: bold;
+}
+
+.form-btn:hover {
+  background-color: white !important;
+  color: #219ebc !important;
+  border: 2px solid #219ebc;
+}
+
+.not-found-text {
+  text-align: center;
+}
+
+.app-logo {
+  color: white !important;
+  font-weight: bold;
+}
+
+.nav-bg-color {
+  background-color: #219ebc !important;
+}
+
+.nav-btn {
+  background-color: white !important;
+  color: #219ebc !important;
+  border: 2px solid #219ebc;
+  border-radius: 5%;
+  font-weight: bold;
+  margin: 5px;
+}
+
+.nav-btn:hover {
+  background-color: #219ebc !important;
+  color: white !important;
+  border: 2px solid white;
+}
+
+.form-txt-color {
+  color: #219ebc;
+}
+
+.form-txt-labels{
+  color: #219ebc;
+  font-weight: bold;
+}
