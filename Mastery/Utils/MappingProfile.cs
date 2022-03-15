@@ -11,6 +11,7 @@ namespace Mastery.Utils
             CreateMap<Course, CourseDTO>().ReverseMap();
             CreateMap<Week, WeekDTO>().ReverseMap();
             CreateMap<Testimonial, TestimonialDTO>().ReverseMap();
+            CreateMap<CourseClient, CourseClientDTO>().ReverseMap();
         }
     }
 

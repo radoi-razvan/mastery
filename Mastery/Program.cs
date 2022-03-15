@@ -51,6 +51,8 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddScoped<ICourseService, CourseService>();
 builder.Services.AddScoped<ITestimonialService, TestimonialService>();
+builder.Services.AddScoped<IWeekService, WeekService>();
+builder.Services.AddScoped<IClientService, ClientService>();
 
 // Auto Mapper Configurations
 var mapperConfig = new MapperConfiguration(mc =>
