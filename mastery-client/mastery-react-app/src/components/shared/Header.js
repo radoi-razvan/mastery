@@ -56,7 +56,11 @@ export const Header = () => {
         <nav className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link active nav-btn" aria-current="page" to="/">
+              <Link
+                className="nav-link active nav-btn"
+                aria-current="page"
+                to="/"
+              >
                 Home
               </Link>
             </li>
@@ -73,12 +77,12 @@ export const Header = () => {
               <>
                 <li className="nav-item">
                   <Link className="nav-link nav-btn" to="/register">
-                    Register
+                    Sign Up
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link nav-btn" to="/login">
-                    Login
+                    Sign In
                   </Link>
                 </li>
               </>

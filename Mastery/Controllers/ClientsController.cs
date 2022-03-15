@@ -75,7 +75,7 @@ namespace Mastery.Controllers
             return Ok(courses);
         }
 
-        // GET: courses/clients
+        // GET: courses/clients/details
         [Authorize(Roles = "Mentor")]
         [HttpGet]
         [Route("clients/details")]
@@ -88,7 +88,7 @@ namespace Mastery.Controllers
             return Ok(courseClients);
         }
 
-        // GET: courses/mentor
+        // GET: courses/mentor/5
         [Authorize(Roles = "Mentor,Client")]
         [HttpGet]
         [Route("mentor/{menotrId}")]
