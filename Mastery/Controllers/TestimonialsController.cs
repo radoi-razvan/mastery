@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Mastery.Models;
 using Microsoft.AspNetCore.Authorization;
 using Mastery.Services.Interfaces;
 using Mastery.DTOs;
-using Microsoft.AspNetCore.Identity;
 
 namespace Mastery.Controllers
 {
@@ -14,9 +12,9 @@ namespace Mastery.Controllers
     public class TestimonialsController : ControllerBase
     {
         private readonly ITestimonialService _testimonialService;
-        private readonly ILogger<CoursesController> _logger;
+        private readonly ILogger<TestimonialsController> _logger;
 
-        public TestimonialsController(ITestimonialService testimonialService, ILogger<CoursesController> logger)
+        public TestimonialsController(ITestimonialService testimonialService, ILogger<TestimonialsController> logger)
         {
             _testimonialService = testimonialService;
             _logger = logger;
@@ -37,16 +35,16 @@ namespace Mastery.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<TestimonialDTO>> GetTestimonial(int id)
         {
-            var course = await _testimonialService.GetAsync(id);
+            var testimonial = await _testimonialService.GetAsync(id);
 
-            if (course == null)
+            if (testimonial == null)
             {
                 _logger.LogInformation("Testimonial not found");
                 return NotFound();
             }
 
             _logger.LogInformation("Testimonial retrieved");
-            return Ok(course);
+            return Ok(testimonial);
         }
 
         // PUT: courses/{courseId}/testimonials/id
