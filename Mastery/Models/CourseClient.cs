@@ -9,11 +9,11 @@ namespace Mastery.Models
         public int CourseClientId { get; set; }
         public int CourseId { get; set; }
         public Course? Course { get; set; }
-        public string? ClientId { get; set; }
+        public string ClientId { get; set; } = null!;
         public Client? Client { get; set; }
         [Required]
-        public string? LastYearIncomeRange { get; set; }
+        public string LastYearIncomeRange { get; set; } = null!;
         [Required]
-        public string? JobTitle { get; set; }
+        public string JobTitle { get; set; } = null!;
     }
 }

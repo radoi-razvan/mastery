@@ -10,11 +10,11 @@ namespace Mastery.Models
         [Required]
         public int Number { get; set; }
         [Required]
-        public string? VideoLink { get; set; }
+        public string VideoLink { get; set; } = null!;
         [Required]
-        public string? HomeworkTitle { get; set; }
+        public string HomeworkTitle { get; set; } = null!;
         [Required]
-        public string? ConsultationCallLink { get; set; }
+        public string ConsultationCallLink { get; set; } = null!;
         public List<CourseWeek>? CourseWeeks { get; set; }
     }
 }
