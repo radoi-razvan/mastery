@@ -29,15 +29,8 @@ export const Header = () => {
     });
   };
 
-  const getUserEvent = async (e) => {
-    e.preventDefault();
-    await dataManager.getUser().then((response) => {
-      console.log(response);
-    });
-  };
-
   return (
-    <header className="navbar navbar-expand-lg navbar-light bg-light nav-bg-color">
+    <header className="navbar navbar-expand-lg navbar-light bg-light nav-bg-color header-height">
       <div className="container">
         <Link className="navbar-brand app-logo" to="/">
           MASTERY
@@ -65,8 +58,8 @@ export const Header = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link nav-btn" to="/posts">
-                Posts
+              <Link className="nav-link nav-btn" to="/courses">
+                Courses
               </Link>
             </li>
           </ul>
@@ -88,15 +81,15 @@ export const Header = () => {
               </>
             ) : (
               <>
-                <li className="nav-item navbar-text">{user.email}</li>
                 <li className="nav-item">
-                  <button className="" onClick={(e) => logoutEvent(e)}>
-                    Logout
-                  </button>
+                  <div className="nav-link user-email">{user.email}</div>
                 </li>
                 <li className="nav-item">
-                  <button className="" onClick={(e) => getUserEvent(e)}>
-                    GetUser
+                  <button
+                    className="nav-link nav-btn"
+                    onClick={(e) => logoutEvent(e)}
+                  >
+                    Logout
                   </button>
                 </li>
               </>

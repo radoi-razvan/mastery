@@ -5,7 +5,7 @@ export const NotFound = () => {
     
     <div className="card">
       <div className="card-container not-found-text">
-        <main className="text-danger">
+        <main className="text-danger font-weight-bold">
           <h1>404</h1>
           <p>Not Found</p>
         </main>

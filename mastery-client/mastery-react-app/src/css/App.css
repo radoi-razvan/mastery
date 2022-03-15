@@ -58,7 +58,7 @@
 .form-btn {
   background-color: #e7bc91 !important;
   color: #333533 !important;
-  border: 2px solid #e7bc91;
+  border: 3px solid #e7bc91;
   border-radius: 5%;
   font-weight: bold;
 }
@@ -66,7 +66,7 @@
 .form-btn:hover {
   background-color: #333533 !important;
   color: #e7bc91 !important;
-  border: 2px solid #e7bc91;
+  border: 3px solid #e7bc91;
 }
 
 .not-found-text {
@@ -85,7 +85,7 @@
 .nav-btn {
   background-color: #333533 !important;
   color: #e7bc91 !important;
-  border: 2px solid #e7bc91;
+  border: 3px solid #e7bc91;
   border-radius: 5%;
   font-weight: bold;
   margin: 5px;
@@ -94,7 +94,7 @@
 .nav-btn:hover {
   background-color: #e7bc91 !important;
   color: #333533 !important;
-  border: 2px solid #333533;
+  border: 3px solid #333533;
 }
 
 .form-txt-color {
@@ -108,4 +108,21 @@
 
 .footer-height {
   height: 3.6em !important;
+}
+
+.header-height {
+  height: 4.35em !important;
+}
+
+.font-weight-bold {
+  font-weight: bold !important;
+}
+
+.user-email {
+  background-color: white !important;
+  color: #333533 !important;
+  border: 3px solid #333533;
+  border-radius: 5%;
+  font-weight: bold;
+  margin: 5px;
 }
