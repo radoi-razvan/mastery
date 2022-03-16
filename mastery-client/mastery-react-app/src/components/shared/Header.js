@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAtom } from "jotai";
 import { userSetter } from "../../state";
 import { dataManager } from "../../dataManager";
@@ -7,6 +7,12 @@ import { dataManager } from "../../dataManager";
 export const Header = () => {
   const [user, setUser] = useAtom(userSetter);
   const navigate = useNavigate();
+
+  const location = useLocation();
+  //Destructuring pathname from location
+  const { pathname } = location;
+  //Get the name of the path in array
+  const splitLocation = pathname.split("/");
 
   useEffect(() => {
     setUser();
@@ -50,18 +56,33 @@ export const Header = () => {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link
-                className="nav-link active nav-btn"
+                className={`nav-link active ${
+                  splitLocation[1] === "" ? "active-nav-btns" : ""
+                } nav-btn`}
                 aria-current="page"
                 to="/"
               >
                 Home
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link nav-btn" to="/courses">
-                Courses
-              </Link>
-            </li>
+            {user &&
+            Object.keys(user).length === 0 &&
+            Object.getPrototypeOf(user) === Object.prototype ? (
+              ""
+            ) : (
+              <>
+                <li className="nav-item">
+                  <Link
+                    className={`nav-link ${
+                      splitLocation[1] === "courses" ? "active-nav-btns" : ""
+                    } nav-btn`}
+                    to="/courses"
+                  >
+                    Courses
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
           <ul className="navbar-nav mb-2 mb-lg-0">
             {user &&
@@ -69,12 +90,22 @@ export const Header = () => {
             Object.getPrototypeOf(user) === Object.prototype ? (
               <>
                 <li className="nav-item">
-                  <Link className="nav-link nav-btn" to="/register">
+                  <Link
+                    className={`nav-link ${
+                      splitLocation[1] === "register" ? "active-nav-btns" : ""
+                    } nav-btn`}
+                    to="/register"
+                  >
                     Sign Up
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link nav-btn" to="/login">
+                  <Link
+                    className={`nav-link ${
+                      splitLocation[1] === "login" ? "active-nav-btns" : ""
+                    } nav-btn`}
+                    to="/login"
+                  >
                     Sign In
                   </Link>
                 </li>

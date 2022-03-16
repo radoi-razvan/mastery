@@ -4,58 +4,44 @@ import { dataManager } from "../../dataManager";
 
 export const Register = () => {
   const [redirect, setRedirect] = useState(false);
-  const [error, setError] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setError(null);
 
     const loader = (response) => {
-      if (response.error) {
-        setError(response.error);
-      } else {
+      if (typeof response !== "undefined" && response.status === 201) {
         setRedirect(true);
       }
     };
 
-    dataManager
-      .postRegister({
-        firstName: e.target.firstName.value,
-        lastName: e.target.lastName.value,
-        email: e.target.email.value,
-        password: e.target.password.value,
-        role: e.target.role.value,
-        country: e.target.country.value,
-        city: e.target.city.value,
-        phoneNumber: e.target.phoneNumber.value,
-      })
-      .then((response) => {
-        loader(response);
-      });
+    const warningIcon = document.getElementById("warningIcon");
+    const warningText = document.getElementById("warningText");
+
+    if (e.target.password.value === e.target.repeatPassword.value) {
+      dataManager
+        .postRegister({
+          firstName: e.target.firstName.value,
+          lastName: e.target.lastName.value,
+          email: e.target.email.value,
+          password: e.target.password.value,
+          role: e.target.role.value,
+          country: e.target.country.value,
+          city: e.target.city.value,
+          phoneNumber: e.target.phoneNumber.value,
+        })
+        .then((response) => {
+          loader(response);
+        });
+    } else {
+      warningIcon.classList.remove("forms-warnings-hide");
+      warningText.classList.remove("forms-warnings-hide");
+    }
   };
 
   return redirect ? (
-    <Navigate to="/"></Navigate>
+    <Navigate to="/login"></Navigate>
   ) : (
     <>
-      {error && (
-        <div className="card">
-          <div className="card-container">
-            <div
-              className="alert alert-danger alert-dismissible fade show"
-              role="alert"
-            >
-              <strong>Error: </strong> {error}
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="alert"
-                aria-label="Close"
-              ></button>
-            </div>
-          </div>
-        </div>
-      )}
       <div className="card">
         <div className="container">
           <section>
@@ -104,58 +90,6 @@ export const Register = () => {
                           </div>
                           <div className="mb-3 col col-md-6">
                             <label
-                              htmlFor="email"
-                              className="form-label form-txt-labels"
-                            >
-                              <i className="bi bi-envelope-fill fa-lg me-1 fa-fw label-icons-signin"></i>
-                              Email
-                            </label>
-                            <input
-                              type="email"
-                              className="form-control"
-                              id="email"
-                              name="email"
-                              required
-                            />
-                          </div>
-                          <div className="mb-3 col col-md-6">
-                            <label
-                              htmlFor="password"
-                              className="form-label form-txt-labels"
-                            >
-                              <i className="bi bi-lock-fill fa-lg me-1 fa-fw label-icons-signin"></i>
-                              Password
-                            </label>
-                            <input
-                              type="password"
-                              className="form-control"
-                              id="password"
-                              name="password"
-                              required
-                            />
-                          </div>
-
-                          <div className="mb-3 col col-md-6">
-                            <label
-                              htmlFor="role"
-                              className="form-label form-txt-labels"
-                            >
-                              <i className="bi bi-person-badge fa-lg me-1 fa-fw label-icons-signin"></i>
-                              Role
-                            </label>
-                            <select
-                              type="text"
-                              className="form-control"
-                              id="role"
-                              name="role"
-                              required
-                            >
-                              <option value="Mentor"> Mentor </option>
-                              <option value="Client"> Client </option>
-                            </select>
-                          </div>
-                          <div className="mb-3 col col-md-6">
-                            <label
                               htmlFor="country"
                               className="form-label form-txt-labels"
                             >
@@ -201,6 +135,92 @@ export const Register = () => {
                               name="phoneNumber"
                               required
                             />
+                          </div>
+                          <div className="mb-3 col col-md-6">
+                            <label
+                              htmlFor="role"
+                              className="form-label form-txt-labels"
+                            >
+                              <i className="bi bi-person-badge fa-lg me-1 fa-fw label-icons-signin"></i>
+                              Role
+                            </label>
+                            <select
+                              type="text"
+                              className="form-control"
+                              id="role"
+                              name="role"
+                              required
+                            >
+                              <option value="Mentor"> Mentor </option>
+                              <option value="Client"> Client </option>
+                            </select>
+                          </div>
+                          <div className="mb-3 col col-md-6">
+                            <label
+                              htmlFor="email"
+                              className="form-label form-txt-labels"
+                            >
+                              <i className="bi bi-envelope-fill fa-lg me-1 fa-fw label-icons-signin"></i>
+                              Email
+                            </label>
+                            <input
+                              type="email"
+                              className="form-control"
+                              id="email"
+                              name="email"
+                              required
+                            />
+                          </div>
+                          <div className="mb-3 col col-md-6">
+                            <label
+                              htmlFor="password"
+                              className="form-label form-txt-labels"
+                            >
+                              <i className="bi bi-lock-fill fa-lg me-1 fa-fw label-icons-signin"></i>
+                              Password
+                            </label>
+                            <input
+                              type="password"
+                              className="form-control"
+                              id="password"
+                              name="password"
+                              required
+                            />
+                          </div>
+                          <div className="mb-3 col col-md-6">
+                            <label
+                              htmlFor="repeatPassword"
+                              className="form-label form-txt-labels"
+                            >
+                              <i className="bi bi-key-fill fa-lg me-1 fa-fw label-icons-signin"></i>
+                              Repeat Password
+                            </label>
+                            <input
+                              type="password"
+                              className="form-control"
+                              id="repeatPassword"
+                              name="repeatPassword"
+                              required
+                            />
+                          </div>
+                          <div className="mb-3 col col-md-6">
+                            <div
+                              className="form-outline flex-fill mb-0 forms-warnings-hide"
+                              id="warningText"
+                            >
+                              <div className="form-label form-txt-labels">
+                                <i
+                                  className="bi-exclamation-triangle-fill fa-lg me-1 fa-fw label-icons-signin text-danger forms-warnings-hide"
+                                  id="warningIcon"
+                                ></i>
+                                <span className="text-danger font-weight-bold">
+                                  Unauthorized operation
+                                </span>
+                              </div>
+                              <span className="form-control text-danger font-weight-bold">
+                                Passwords don't match!
+                              </span>
+                            </div>
                           </div>
                           <div className="d-flex justify-content-center">
                             <button

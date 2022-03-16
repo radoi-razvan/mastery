@@ -85,11 +85,16 @@ export const Login = () => {
                               className="form-outline flex-fill mb-0 forms-warnings-hide"
                               id="warningText"
                             >
-                              <span className="form-control text-danger font-weight-bold">
+                              <div className="form-label form-txt-labels">
                                 <i
-                                  className="bi bi-exclamation-triangle-fill fa-lg me-1 fa-fw label-icons-signin text-danger forms-warnings-hide"
+                                  className="bi-exclamation-triangle-fill fa-lg me-1 fa-fw label-icons-signin text-danger forms-warnings-hide"
                                   id="warningIcon"
                                 ></i>
+                                <span className="text-danger font-weight-bold">
+                                  Unauthorized operation
+                                </span>
+                              </div>
+                              <span className="form-control text-danger font-weight-bold">
                                 Invalid credentials!
                               </span>
                             </div>
