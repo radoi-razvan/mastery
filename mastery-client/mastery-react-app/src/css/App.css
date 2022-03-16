@@ -126,3 +126,11 @@
   font-weight: bold;
   margin: 5px;
 }
+
+.txt-color-brown {
+  color: #e7bc91;
+}
+
+.forms-warnings-hide {
+  display: none;
+}

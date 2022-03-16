@@ -45,7 +45,7 @@ namespace Mastery.Controllers
             await _clientService.AddAsync(courseId, clientId, courseClient);
             _logger.LogInformation("A new client added");
 
-            return CreatedAtAction("EnrollClient", new { message = "A new cliente added" });
+            return CreatedAtAction("EnrollClient", new { message = "A new client added" });
         }
 
         // DELETE: courses/{courseId}/clients

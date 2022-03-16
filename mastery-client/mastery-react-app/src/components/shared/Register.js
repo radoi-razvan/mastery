@@ -71,7 +71,11 @@ export const Register = () => {
 
                         <form onSubmit={handleSubmit} className="row">
                           <div className="mb-3 col col-md-6">
-                            <label htmlFor="firstName" className="form-label form-txt-labels">
+                            <label
+                              htmlFor="firstName"
+                              className="form-label form-txt-labels"
+                            >
+                              <i className="bi bi-person-fill fa-lg me-1 fa-fw label-icons-signin"></i>
                               First Name
                             </label>
                             <input
@@ -83,7 +87,11 @@ export const Register = () => {
                             />
                           </div>
                           <div className="mb-3 col col-md-6">
-                            <label htmlFor="lastName" className="form-label form-txt-labels">
+                            <label
+                              htmlFor="lastName"
+                              className="form-label form-txt-labels"
+                            >
+                              <i className="bi bi-person-fill fa-lg me-1 fa-fw label-icons-signin"></i>
                               Last Name
                             </label>
                             <input
@@ -95,7 +103,11 @@ export const Register = () => {
                             />
                           </div>
                           <div className="mb-3 col col-md-6">
-                            <label htmlFor="email" className="form-label form-txt-labels">
+                            <label
+                              htmlFor="email"
+                              className="form-label form-txt-labels"
+                            >
+                              <i className="bi bi-envelope-fill fa-lg me-1 fa-fw label-icons-signin"></i>
                               Email
                             </label>
                             <input
@@ -107,7 +119,11 @@ export const Register = () => {
                             />
                           </div>
                           <div className="mb-3 col col-md-6">
-                            <label htmlFor="password" className="form-label form-txt-labels">
+                            <label
+                              htmlFor="password"
+                              className="form-label form-txt-labels"
+                            >
+                              <i className="bi bi-lock-fill fa-lg me-1 fa-fw label-icons-signin"></i>
                               Password
                             </label>
                             <input
@@ -120,7 +136,11 @@ export const Register = () => {
                           </div>
 
                           <div className="mb-3 col col-md-6">
-                            <label htmlFor="role" className="form-label form-txt-labels">
+                            <label
+                              htmlFor="role"
+                              className="form-label form-txt-labels"
+                            >
+                              <i className="bi bi-person-badge fa-lg me-1 fa-fw label-icons-signin"></i>
                               Role
                             </label>
                             <select
@@ -135,7 +155,11 @@ export const Register = () => {
                             </select>
                           </div>
                           <div className="mb-3 col col-md-6">
-                            <label htmlFor="country" className="form-label form-txt-labels">
+                            <label
+                              htmlFor="country"
+                              className="form-label form-txt-labels"
+                            >
+                              <i className="bi bi-geo-alt-fill fa-lg me-1 fa-fw label-icons-signin"></i>
                               Country
                             </label>
                             <input
@@ -147,7 +171,11 @@ export const Register = () => {
                             />
                           </div>
                           <div className="mb-3 col col-md-6">
-                            <label htmlFor="city" className="form-label form-txt-labels">
+                            <label
+                              htmlFor="city"
+                              className="form-label form-txt-labels"
+                            >
+                              <i className="bi bi-pin-map-fill fa-lg me-1 fa-fw label-icons-signin"></i>
                               City
                             </label>
                             <input
@@ -159,7 +187,11 @@ export const Register = () => {
                             />
                           </div>
                           <div className="mb-3 col col-md-6">
-                            <label htmlFor="phoneNumber" className="form-label form-txt-labels">
+                            <label
+                              htmlFor="phoneNumber"
+                              className="form-label form-txt-labels"
+                            >
+                              <i className="bi bi-phone-fill fa-lg me-1 fa-fw label-icons-signin"></i>
                               Phone Number
                             </label>
                             <input
