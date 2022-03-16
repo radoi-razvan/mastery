@@ -1,25 +1,16 @@
 import { atom } from "jotai";
 import { dataManager } from "./dataManager";
 
-// export const STATE = {
-//   GYM_LIST: atom([]),
-//   GYMS: atom(
-//     (get) => get(STATE.GYM_LIST),
-//     async (get, set) => {
-//       // const gyms = await dataHandler.getGyms();
-//       // set(STATE.GYM_LIST, gyms.data);
-//       // set(ownedGymsSetter);
-//     }
-//   ),
-
-//   MY_GYMS_CHECK: atom(false),
-//   GYMS_CHECKER: atom(
-//     (get) => get(STATE.MY_GYMS_CHECK),
-//     (get, set, value) => {
-//       set(STATE.MY_GYMS_CHECK, value);
-//     }
-//   ),
-// };
+export const STATE = {
+  COURSES_LIST: atom([]),
+  COURSES: atom(
+    (get) => get(STATE.COURSES_LIST),
+    async (get, set) => {
+      const courses = await dataManager.getCourses();
+      set(STATE.COURSES_LIST, courses);
+    }
+  ),
+};
 
 export const USER = atom({});
 export const userSetter = atom(

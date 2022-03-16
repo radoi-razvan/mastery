@@ -134,3 +134,26 @@
 .forms-warnings-hide {
   display: none;
 }
+
+.courses-img {
+  height: 12em;
+  width: 15em;
+  margin-right: 10px;
+}
+
+.courses-card {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+  transition: 0.3s;
+  margin: auto;
+  padding: 10px;
+  width: 50%;
+  margin-top: 2em;
+}
+
+.courses-card:hover {
+  box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.4);
+}
+
+.container-margin-top {
+  margin-top: 2em;
+}
