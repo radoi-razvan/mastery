@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { Course } from "../Course";
 import { STATE } from "../../state";
 import { useAtom } from "jotai";

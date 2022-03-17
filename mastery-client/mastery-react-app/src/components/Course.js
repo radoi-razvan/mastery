@@ -27,7 +27,7 @@ export const Course = ({
               <p className="card-text h5 font-weight-bold">$ {price}</p>
               <p className="card-text font-weight-bold">
                 <span className="txt-color-brown">
-                  <i class="bi bi-boxes fa-lg me-1 fa-fw label-icons-signin"></i>
+                  <i className="bi bi-boxes fa-lg me-1 fa-fw label-icons-signin"></i>
                   Category: {category}
                 </span>
                 <span className="txt-color-brown">
@@ -36,6 +36,18 @@ export const Course = ({
                 </span>
               </p>
               <p className="card-text description-txt">{description}</p>
+              <Link
+                to={`/courses/${courseId}/weeks`} 
+                className="btn nav-btn"
+              >
+                Weeks
+              </Link>
+              <Link
+                to={`/courses/${courseId}/testimonials`} 
+                className="btn nav-btn"
+              >
+                Testimonials
+              </Link>
             </div>
           </div>
         </div>
