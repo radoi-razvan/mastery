@@ -135,10 +135,18 @@
   display: none;
 }
 
+.active-nav-btns {
+  background-color: #e7bc91 !important;
+  color: #333533 !important;
+  border: 3px solid #333533;
+}
 .courses-img {
-  height: 12em;
-  width: 15em;
-  margin-right: 10px;
+  width: 20em;
+  border: 6px solid #333533;
+  display: inline-block; 
+  height: 100%; 
+  vertical-align: middle;
+
 }
 
 .courses-card {
@@ -147,7 +155,7 @@
   margin: auto;
   padding: 10px;
   width: 50%;
-  margin-top: 2em;
+  margin-top: 4em;
 }
 
 .courses-card:hover {
@@ -156,4 +164,20 @@
 
 .container-margin-top {
   margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.courses-card-title {
+  background-color: #e7bc91 !important;
+  color: #333533 !important;
+  width: max-content;
+  padding: 5px;
+}
+
+.max-content-length {
+  max-width: max-content;
+}
+
+.description-txt {
+  font-weight: 600;
 }
