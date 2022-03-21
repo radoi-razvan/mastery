@@ -3,11 +3,14 @@ import { Week } from "../Week";
 import { STATE } from "../../state";
 import { useAtom } from "jotai";
 import { useParams } from "react-router";
+import { useLocation } from 'react-router-dom'
 
 
 export const Weeks = () => {
   const [weeks, setWeeks] = useAtom(STATE.WEEKS);
   let params = useParams();
+  const location = useLocation();
+  const { mentorId } = location.state;
 
   useEffect(() => {
     setWeeks(params.courseId);
@@ -24,6 +27,7 @@ export const Weeks = () => {
                 homeworkTitle={week.homeworkTitle}
                 consultationCallLink={week.consultationCallLink}
                 weekId={week.weekId}
+                mentorId={mentorId}
                 key={index}
               />
             ))}

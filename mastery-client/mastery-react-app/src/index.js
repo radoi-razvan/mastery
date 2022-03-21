@@ -15,6 +15,7 @@ import { Register } from "./components/shared/Register";
 import { Login } from "./components/shared/Login";
 import { CourseForm } from "./components/forms/CourseForm";
 import { TestimonialForm } from "./components/forms/TestimonialForm";
+import { WeekForm } from "./components/forms/WeekForm";
 
 const App = () => {
   return (
@@ -25,6 +26,8 @@ const App = () => {
         <Route path="/courses/:courseId/testimonials/:testimonialId/edit" element={<TestimonialForm />}></Route>
         <Route path="/courses/:courseId/testimonials/add" element={<TestimonialForm />}></Route>
         <Route path="/courses/:courseId/testimonials" element={<Testimonials />}></Route>
+        <Route path="/courses/:courseId/weeks/:weekId/edit" element={<WeekForm />}></Route>
+        <Route path="/courses/:courseId/weeks/add" element={<WeekForm />}></Route>
         <Route path="/courses/:courseId/weeks" element={<Weeks />}></Route>
         <Route path="/courses/:courseId/edit" element={<CourseForm />}></Route>
         <Route path="/courses/add" element={<CourseForm />}></Route>

@@ -62,15 +62,24 @@ export const Course = ({
                 </span>
               </p>
               <p className="card-text description-txt">{description}</p>
-              <Link to={`/courses/${courseId}/weeks`} className="btn nav-btn">
+              <Link
+                to={`/courses/${courseId}/weeks`}
+                state={{ mentorId: mentorId }}
+                className="btn nav-btn"
+              >
                 Weeks
               </Link>
-              <Link
-                to={`/courses/${courseId}/weeks/add`}
-                className="btn nav-btn add-btns"
-              >
-                +
-              </Link>
+              {user.id === mentorId && (
+                <>
+                  <Link
+                    to={`/courses/${courseId}/weeks/add`}
+                    state={{ mentorId: mentorId }}
+                    className="btn nav-btn add-btns"
+                  >
+                    +
+                  </Link>
+                </>
+              )}
               <Link
                 to={`/courses/${courseId}/testimonials`}
                 state={{ mentorId: mentorId }}
@@ -78,13 +87,17 @@ export const Course = ({
               >
                 Testimonials
               </Link>
-              <Link
-                to={`/courses/${courseId}/testimonials/add`}
-                state={{ mentorId: mentorId }}
-                className="btn nav-btn add-week-testimonial-btns"
-              >
-                +
-              </Link>
+              {user.id === mentorId && (
+                <>
+                  <Link
+                    to={`/courses/${courseId}/testimonials/add`}
+                    state={{ mentorId: mentorId }}
+                    className="btn nav-btn add-week-testimonial-btns"
+                  >
+                    +
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>
