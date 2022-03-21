@@ -3,24 +3,26 @@ import { useAtom } from "jotai";
 import { Navigate } from "react-router-dom";
 import { userSetter } from "../../state";
 import { dataManager } from "../../dataManager";
+import { ToastContainer, toast } from "react-toastify";
 
 export const Login = () => {
   const [, setUser] = useAtom(userSetter);
   const [redirect, setRedirect] = useState(false);
+  const invalidCredentialsNotification = () => {
+    toast.error("Invalid credentials!", {
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const loader = (response) => {
-      const warningIcon = document.getElementById("warningIcon");
-      const warningText = document.getElementById("warningText");
-
       if (typeof response !== "undefined" && response.status === 200) {
         setUser();
         setRedirect(true);
       } else {
-        warningIcon.classList.remove("forms-warnings-hide");
-        warningText.classList.remove("forms-warnings-hide");
+        invalidCredentialsNotification();
       }
     };
 
@@ -38,6 +40,7 @@ export const Login = () => {
     <Navigate to="/"></Navigate>
   ) : (
     <>
+      <ToastContainer />
       <div className="card">
         <div className="card-container">
           <section>
@@ -80,26 +83,6 @@ export const Login = () => {
                               required
                             />
                           </div>
-                          <div className="mb-3">
-                            <div
-                              className="form-outline flex-fill mb-0 forms-warnings-hide"
-                              id="warningText"
-                            >
-                              <div className="form-label form-txt-labels">
-                                <i
-                                  className="bi-exclamation-triangle-fill fa-lg me-1 fa-fw label-icons-signin text-danger forms-warnings-hide"
-                                  id="warningIcon"
-                                ></i>
-                                <span className="text-danger font-weight-bold">
-                                  Unauthorized operation
-                                </span>
-                              </div>
-                              <span className="form-control text-danger font-weight-bold">
-                                Invalid credentials!
-                              </span>
-                            </div>
-                          </div>
-
                           <div className="d-flex justify-content-center">
                             <button
                               type="submit"

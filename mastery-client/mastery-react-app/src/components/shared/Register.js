@@ -1,9 +1,23 @@
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { dataManager } from "../../dataManager";
+import { ToastContainer, toast } from "react-toastify";
 
 export const Register = () => {
   const [redirect, setRedirect] = useState(false);
+  const invalidOperationNotification = () => {
+    toast.error(
+      `Password require unique character, non alphanumeric, lower case, upper case, digit and minimum length of 6!`,
+      {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      }
+    );
+  };
+  const unmatchedPasswordsNotification = () => {
+    toast.error("Passwords don't match!", {
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -11,11 +25,10 @@ export const Register = () => {
     const loader = (response) => {
       if (typeof response !== "undefined" && response.status === 201) {
         setRedirect(true);
+      } else {
+        invalidOperationNotification();
       }
     };
-
-    const warningIcon = document.getElementById("warningIcon");
-    const warningText = document.getElementById("warningText");
 
     if (e.target.password.value === e.target.repeatPassword.value) {
       dataManager
@@ -33,8 +46,7 @@ export const Register = () => {
           loader(response);
         });
     } else {
-      warningIcon.classList.remove("forms-warnings-hide");
-      warningText.classList.remove("forms-warnings-hide");
+      unmatchedPasswordsNotification();
     }
   };
 
@@ -42,6 +54,7 @@ export const Register = () => {
     <Navigate to="/login"></Navigate>
   ) : (
     <>
+      <ToastContainer />
       <div className="card">
         <div className="container">
           <section>
@@ -202,25 +215,6 @@ export const Register = () => {
                               name="repeatPassword"
                               required
                             />
-                          </div>
-                          <div className="mb-3 col col-md-6">
-                            <div
-                              className="form-outline flex-fill mb-0 forms-warnings-hide"
-                              id="warningText"
-                            >
-                              <div className="form-label form-txt-labels">
-                                <i
-                                  className="bi-exclamation-triangle-fill fa-lg me-1 fa-fw label-icons-signin text-danger forms-warnings-hide"
-                                  id="warningIcon"
-                                ></i>
-                                <span className="text-danger font-weight-bold">
-                                  Unauthorized operation
-                                </span>
-                              </div>
-                              <span className="form-control text-danger font-weight-bold">
-                                Passwords don't match!
-                              </span>
-                            </div>
                           </div>
                           <div className="d-flex justify-content-center">
                             <button
