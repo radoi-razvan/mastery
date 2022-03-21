@@ -69,12 +69,49 @@ export const Header = () => {
             Object.keys(user).length === 0 &&
             Object.getPrototypeOf(user) === Object.prototype ? (
               ""
+            ) : user.role === "Mentor" ? (
+              <>
+                <li className="nav-item">
+                  <Link
+                    className={`nav-link ${
+                      (splitLocation[1] === "courses" &&
+                        splitLocation.length === 2) ||
+                      (splitLocation[1] === "courses" &&
+                        location.pathname !== "/courses/add")
+                        ? "active-nav-btns"
+                        : ""
+                    } nav-btn`}
+                    to="/courses"
+                  >
+                    Courses
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className={`nav-link active ${
+                      location.pathname === "/courses/add"
+                        ? "active-nav-btns"
+                        : ""
+                    } nav-btn`}
+                    aria-current="page"
+                    to="/courses/add"
+                  >
+                    Add Course
+                  </Link>
+                </li>
+                
+              </>
             ) : (
               <>
                 <li className="nav-item">
                   <Link
                     className={`nav-link ${
-                      splitLocation[1] === "courses" ? "active-nav-btns" : ""
+                      (splitLocation[1] === "courses" &&
+                        splitLocation.length === 2) ||
+                      (splitLocation[1] === "courses" &&
+                        location.pathname !== "/courses/add")
+                        ? "active-nav-btns"
+                        : ""
                     } nav-btn`}
                     to="/courses"
                   >

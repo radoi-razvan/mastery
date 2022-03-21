@@ -195,3 +195,15 @@
   color: #333533;
 }
 
+.edit-delete-btns {
+  color: #333533;
+  cursor: pointer;
+}
+
+.edit-delete-btns:hover {
+  color: #e7bc91;
+}
+
+.add-btns {
+  margin-right: 2em;
+}

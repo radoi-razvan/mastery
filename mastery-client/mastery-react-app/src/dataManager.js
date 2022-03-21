@@ -68,7 +68,7 @@ export const dataManager = {
   postCourse: async (formData) => {
     const response = await axios
       .post(
-        `${process.env.REACT_APP_BACKEND}/courses`,
+        `${process.env.REACT_APP_BASE_URL_BACKEND}/courses`,
         {
           name: formData.name,
           category: formData.category,
@@ -84,7 +84,7 @@ export const dataManager = {
   putCourse: async function (courseId, formData) {
     const response = await axios
       .put(
-        `${process.env.REACT_APP_BACKEND}/courses/${courseId}`,
+        `${process.env.REACT_APP_BASE_URL_BACKEND}/courses/${courseId}`,
         {
           name: formData.name,
           category: formData.category,
@@ -99,7 +99,7 @@ export const dataManager = {
   },
   deleteCourse: async function (courseId) {
     const response = await axios
-      .delete(`${process.env.REACT_APP_BACKEND}/courses/${courseId}`, {
+      .delete(`${process.env.REACT_APP_BASE_URL_BACKEND}/courses/${courseId}`, {
         withCredentials: true,
       })
       .catch((e) => console.error(e));
@@ -131,7 +131,7 @@ export const dataManager = {
   postTestimonial: async (courseId, formData) => {
     const response = await axios
       .post(
-        `${process.env.REACT_APP_BACKEND}/courses/${courseId}/testimonials`,
+        `${process.env.REACT_APP_BASE_URL_BACKEND}/courses/${courseId}/testimonials`,
         {
           firstName: formData.firstName,
           lastName: formData.lastName,
@@ -146,7 +146,7 @@ export const dataManager = {
   putTestimonial: async function (courseId, testimonialId, formData) {
     const response = await axios
       .put(
-        `${process.env.REACT_APP_BACKEND}/courses/${courseId}/testimonials/${testimonialId}`,
+        `${process.env.REACT_APP_BASE_URL_BACKEND}/courses/${courseId}/testimonials/${testimonialId}`,
         {
           firstName: formData.firstName,
           lastName: formData.lastName,
@@ -161,7 +161,7 @@ export const dataManager = {
   deleteTestimonial: async function (courseId, testimonialId) {
     const response = await axios
       .delete(
-        `${process.env.REACT_APP_BACKEND}/courses/${courseId}/testimonials/${testimonialId}`,
+        `${process.env.REACT_APP_BASE_URL_BACKEND}/courses/${courseId}/testimonials/${testimonialId}`,
         {
           withCredentials: true,
         }
@@ -195,7 +195,7 @@ export const dataManager = {
   postWeek: async (courseId, formData) => {
     const response = await axios
       .post(
-        `${process.env.REACT_APP_BACKEND}/courses/${courseId}/weeks`,
+        `${process.env.REACT_APP_BASE_URL_BACKEND}/courses/${courseId}/weeks`,
         {
           number: formData.number,
           videoLink: formData.videoLink,
@@ -210,7 +210,7 @@ export const dataManager = {
   putWeek: async function (courseId, weekId, formData) {
     const response = await axios
       .put(
-        `${process.env.REACT_APP_BACKEND}/courses/${courseId}/weeks/${weekId}`,
+        `${process.env.REACT_APP_BASE_URL_BACKEND}/courses/${courseId}/weeks/${weekId}`,
         {
           number: formData.number,
           videoLink: formData.videoLink,
@@ -225,7 +225,7 @@ export const dataManager = {
   deleteWeek: async function (courseId, weekId) {
     const response = await axios
       .delete(
-        `${process.env.REACT_APP_BACKEND}/courses/${courseId}/weeks/${weekId}`,
+        `${process.env.REACT_APP_BASE_URL_BACKEND}/courses/${courseId}/weeks/${weekId}`,
         {
           withCredentials: true,
         }
@@ -245,7 +245,7 @@ export const dataManager = {
   joinCourse: async (courseId, formData) => {
     const response = await axios
       .post(
-        `${process.env.REACT_APP_BACKEND}/courses/${courseId}/clients`,
+        `${process.env.REACT_APP_BASE_URL_BACKEND}/courses/${courseId}/clients`,
         {
           courseId: formData.courseId,
           lastYearIncomeRange: formData.lastYearIncomeRange,
@@ -258,9 +258,12 @@ export const dataManager = {
   },
   leaveCourse: async function (courseId) {
     const response = await axios
-      .delete(`${process.env.REACT_APP_BACKEND}/courses/${courseId}/clients`, {
-        withCredentials: true,
-      })
+      .delete(
+        `${process.env.REACT_APP_BASE_URL_BACKEND}/courses/${courseId}/clients`,
+        {
+          withCredentials: true,
+        }
+      )
       .catch((e) => console.error(e));
     return response;
   },
