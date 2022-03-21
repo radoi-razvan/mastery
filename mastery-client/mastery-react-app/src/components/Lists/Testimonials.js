@@ -3,10 +3,13 @@ import { Testimonial } from "../Testimonial";
 import { STATE } from "../../state";
 import { useAtom } from "jotai";
 import { useParams } from "react-router";
+import { useLocation } from 'react-router-dom'
 
 export const Testimonials = () => {
   const [testimonials, setTestimonial] = useAtom(STATE.TESTIMONIALS);
   let params = useParams();
+  const location = useLocation();
+  const { mentorId } = location.state;
 
   useEffect(() => {
     setTestimonial(params.courseId);
@@ -23,6 +26,7 @@ export const Testimonials = () => {
               comment={testimonial.comment}
               rating={testimonial.rating}
               testimonialId={testimonial.testimonialId}
+              mentorId={mentorId}
               key={index}
             />
           ))}
