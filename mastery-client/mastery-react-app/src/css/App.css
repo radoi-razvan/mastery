@@ -207,3 +207,13 @@
 .add-btns {
   margin-right: 2em;
 }
+
+.client-card-title {
+  background-color: #e7bc91 !important;
+  color: #333533 !important;
+  padding: 5px;
+  width: max-content;
+  margin: auto !important;
+  margin-bottom: 1em !important;
+  margin-top: 1em !important;
+}

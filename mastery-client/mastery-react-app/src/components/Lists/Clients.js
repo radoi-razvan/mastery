@@ -25,7 +25,6 @@ export const Clients = () => {
               firstName={client.firstName}
               lastName={client.lastName}
               phoneNumber={client.phoneNumber}
-              courseClientId={client.courseClientId}
               key={index}
             />
           ))}
