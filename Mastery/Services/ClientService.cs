@@ -69,7 +69,7 @@ namespace Mastery.Services
 
         public async Task<IEnumerable<ClientDetailsDTO>> GetCourseClients(string userId)
         {
-            List<ClientDetailsDTO> result = new();
+            List<ClientDetailsDTO> clientDetailsDTOs = new();
             var mentorCoursesIds = _db.Courses.Where(c => c.MentorId == userId)
                 .Select(c => c.CourseId);
             var clients = _db.CourseClients.Where(cc => mentorCoursesIds.Contains(cc.CourseId));
@@ -93,26 +93,34 @@ namespace Mastery.Services
                     PhoneNumber = userDetails.PhoneNumber,
                     CourseName = course.Name,
                 };
-                result.Add(clientDetails); 
+                clientDetailsDTOs.Add(clientDetails); 
             }
 
-            return result;
+            return clientDetailsDTOs;
         }
 
-        public MentorDTO GetMentor(string userId)
+        public IEnumerable<MentorDTO> GetMentors()
         {
-            var mentor = _db.Users.Find(userId);
-            var mentorDTO = new MentorDTO();
+            List<MentorDTO> mentorDTOs = new();
+            var mentorRoleId = _db.Roles.Where(r => r.Name == "Mentor").First().Id;
+            var mentorsIds = _db.UserRoles.Where(ur => ur.RoleId == mentorRoleId).Select(ur => ur.UserId);
+            var mentors = _db.Users.Where(u => mentorsIds.Contains(u.Id));
 
-            if (mentor is not null)
+            foreach (var mentor in mentors)
             {
-                mentorDTO.FirstName = mentor.FirstName;
-                mentorDTO.LastName = mentor.LastName;
-                mentorDTO.Country = mentor.Country;
-                mentorDTO.City = mentor.City;
+                MentorDTO mentorDTO = new()
+                {
+                    MentorId = mentor.Id,
+                    FirstName = mentor.FirstName,
+                    LastName = mentor.LastName,
+                    Country = mentor.Country,
+                    City = mentor.City,
+                    Email = mentor.Email,
+                };
+                mentorDTOs.Add(mentorDTO);
             }
 
-            return mentorDTO;
+            return mentorDTOs;
         }
     }
 }

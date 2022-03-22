@@ -9,6 +9,6 @@ namespace Mastery.Services.Interfaces
         List<object> GetTotalCoursesClients();
         Task <IEnumerable<CourseDTO>> GetAttendedCourses(string clientId);
         Task <IEnumerable<ClientDetailsDTO>> GetCourseClients(string userId);
-        MentorDTO GetMentor(string userId);
+        IEnumerable<MentorDTO> GetMentors();
     }
 }

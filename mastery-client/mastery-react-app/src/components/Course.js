@@ -13,6 +13,7 @@ export const Course = ({
   startingDate,
   mentorId,
   courseId,
+  mentor,
 }) => {
   const user = useAtomValue(userSetter);
   const setCourses = useUpdateAtom(STATE.COURSES);
@@ -65,6 +66,10 @@ export const Course = ({
                 </>
               )}
               <p className="card-text h5 font-weight-bold mt-3">
+                <span className="bi bi-person-badge margin-right-icon">
+                  {" "}
+                  {mentor.firstName} {mentor.lastName}
+                </span>
                 <i className="bi bi-people-fill"></i>{" "}
                 {totalCoursesMembers.map(
                   (o) => o.courseId === courseId && o.totalCourseClients

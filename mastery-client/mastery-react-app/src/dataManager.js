@@ -285,14 +285,11 @@ export const dataManager = {
       .catch((e) => console.error(e));
     return response.data;
   },
-  getCourseMentor: async (menotrId) => {
+  getMentors: async () => {
     const response = await axios
-      .get(
-        `${process.env.REACT_APP_BASE_URL_BACKEND}/courses/mentor/${menotrId}`,
-        {
-          withCredentials: true,
-        }
-      )
+      .get(`${process.env.REACT_APP_BASE_URL_BACKEND}/courses/mentors`, {
+        withCredentials: true,
+      })
       .catch((e) => console.error(e));
     return response.data;
   },

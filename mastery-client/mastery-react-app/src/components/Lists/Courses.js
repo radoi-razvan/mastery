@@ -8,10 +8,12 @@ import { useUpdateAtom } from "jotai/utils";
 export const Courses = () => {
   const [courses, setCourses] = useAtom(STATE.COURSES);
   const setTotalCoursesMembers = useUpdateAtom(STATE.COURSES_MEMBERS);
+  const [mentors, setMentors] = useAtom(STATE.MENTORS);
 
   useEffect(() => {
     setCourses();
     setTotalCoursesMembers();
+    setMentors();
   }, []);
 
   return (
@@ -27,6 +29,7 @@ export const Courses = () => {
                 startingDate={course.startingDate}
                 mentorId={course.mentorId}
                 courseId={course.courseId}
+                mentor={mentors.filter(mentor => mentor.mentorId === course.mentorId)[0]}
                 key={index}
               />
             ))}

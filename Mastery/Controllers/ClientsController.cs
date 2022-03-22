@@ -91,13 +91,13 @@ namespace Mastery.Controllers
         // GET: courses/mentor/5
         [Authorize(Roles = "Mentor,Client")]
         [HttpGet]
-        [Route("mentor/{menotrId}")]
-        public ActionResult<MentorDTO> GetCourseMentor(string mentorId)
+        [Route("mentors")]
+        public ActionResult<IEnumerable<MentorDTO>> GetCourseMentors()
         {
-            var mentor = _clientService.GetMentor(mentorId);
-            _logger.LogInformation("Mentor details retrieved");
+            var mentors = _clientService.GetMentors();
+            _logger.LogInformation("Mentors details retrieved");
 
-            return Ok(mentor);
+            return Ok(mentors);
         }
 
     }
