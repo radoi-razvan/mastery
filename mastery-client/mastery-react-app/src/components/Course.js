@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import noImgPlaceholder from "../img/NoImagePlaceholder.jpg";
 import { useAtomValue, useUpdateAtom } from "jotai/utils";
-import { STATE, userSetter } from "../state";
+import { STATE, userSetter, attendedCoursesSetter } from "../state";
 import { dataManager } from "../dataManager";
 
 export const Course = ({
@@ -16,10 +16,16 @@ export const Course = ({
 }) => {
   const user = useAtomValue(userSetter);
   const setCourses = useUpdateAtom(STATE.COURSES);
+  const attendedCourses = useAtomValue(attendedCoursesSetter);
 
   const deleteEvent = (e) => {
     e.preventDefault();
     dataManager.deleteCourse(courseId).then(() => setCourses());
+  };
+
+  const leaveCourse = (e) => {
+    e.preventDefault();
+    dataManager.leaveCourse(courseId).then(() => setCourses());;
   };
 
   return (
@@ -98,6 +104,19 @@ export const Course = ({
                   </Link>
                 </>
               )}
+              {user.role === "Client" &&
+                (!attendedCourses.includes(courseId) ? (
+                  <Link
+                    to={`/courses/${courseId}/clients`}
+                    className="btn nav-btn"
+                  >
+                    Join
+                  </Link>
+                ) : (
+                  <div className="btn nav-btn" onClick={(e) => leaveCourse(e)}>
+                    Leave
+                  </div>
+                ))}
             </div>
           </div>
         </div>

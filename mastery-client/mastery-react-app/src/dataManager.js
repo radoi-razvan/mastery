@@ -247,7 +247,6 @@ export const dataManager = {
       .post(
         `${process.env.REACT_APP_BASE_URL_BACKEND}/courses/${courseId}/clients`,
         {
-          courseId: formData.courseId,
           lastYearIncomeRange: formData.lastYearIncomeRange,
           jobTitle: formData.jobTitle,
         },

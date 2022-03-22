@@ -8,6 +8,7 @@ export const STATE = {
     async (get, set) => {
       const courses = await dataManager.getCourses();
       set(STATE.COURSES_LIST, courses);
+      set(attendedCoursesSetter);
     }
   ),
   WEEKS_LIST: atom([]),
@@ -27,6 +28,22 @@ export const STATE = {
     }
   ),
 };
+
+export const ATTENDED_COURSES = atom([]);
+export const attendedCoursesSetter = atom(
+  (get) => get(ATTENDED_COURSES),
+  async (get, set) => {
+    const attendedCourses = await dataManager.getAttendedCourses();
+    if (attendedCourses) {
+      set(
+        ATTENDED_COURSES,
+        attendedCourses.map((c) => c.courseId)
+      );
+    } else {
+      set(ATTENDED_COURSES, []);
+    }
+  }
+);
 
 export const USER = atom({});
 export const userSetter = atom(

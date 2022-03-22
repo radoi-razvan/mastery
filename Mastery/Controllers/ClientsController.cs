@@ -63,13 +63,13 @@ namespace Mastery.Controllers
 
 
         // GET: courses/clients
-        [Authorize(Roles = "Client")]
+        [Authorize(Roles = "Mentor,Client")]
         [HttpGet]
         [Route("clients")]
-        public ActionResult GetAttendedCourses()
+        public async Task<ActionResult<IEnumerable<CourseDTO>>> GetAttendedCourses()
         {
             var clientId = _userManager.GetUserId(User);
-            var courses = _clientService.GetAttendedCourses(clientId);
+            var courses = await _clientService.GetAttendedCourses(clientId);
             _logger.LogInformation("Attended courses retrieved");
 
             return Ok(courses);

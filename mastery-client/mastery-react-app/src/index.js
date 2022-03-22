@@ -16,6 +16,7 @@ import { Login } from "./components/shared/Login";
 import { CourseForm } from "./components/forms/CourseForm";
 import { TestimonialForm } from "./components/forms/TestimonialForm";
 import { WeekForm } from "./components/forms/WeekForm";
+import { JoinCourseForm } from "./components/forms/JoinCourseForm";
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/courses/:courseId/weeks" element={<Weeks />}></Route>
         <Route path="/courses/:courseId/edit" element={<CourseForm />}></Route>
         <Route path="/courses/add" element={<CourseForm />}></Route>
+        <Route path="/courses/:courseId/clients" element={<JoinCourseForm />}></Route>
         <Route path="/courses" element={<Courses />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/login" element={<Login />}></Route>
