@@ -274,7 +274,7 @@ export const dataManager = {
       .catch((e) => console.error(e));
     return response.data;
   },
-  getCourseClientsDetails: async () => {
+  getClientsDetails: async () => {
     const response = await axios
       .get(
         `${process.env.REACT_APP_BASE_URL_BACKEND}/courses/clients/details`,

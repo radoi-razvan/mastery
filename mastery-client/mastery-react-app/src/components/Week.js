@@ -29,8 +29,8 @@ export const Week = ({
         <div className="row no-gutters">
           <div className="d-inline-flex">
             <iframe
-              width="420"
-              height="345"
+              width="320"
+              height="245"
               title={`${weekId}`}
               src={`${videoLink}`}
               className=""

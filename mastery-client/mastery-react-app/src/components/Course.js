@@ -17,15 +17,23 @@ export const Course = ({
   const user = useAtomValue(userSetter);
   const setCourses = useUpdateAtom(STATE.COURSES);
   const attendedCourses = useAtomValue(attendedCoursesSetter);
+  const totalCoursesMembers = useAtomValue(STATE.COURSES_MEMBERS);
+  const setTotalCoursesMembers = useUpdateAtom(STATE.COURSES_MEMBERS);
 
   const deleteEvent = (e) => {
     e.preventDefault();
-    dataManager.deleteCourse(courseId).then(() => setCourses());
+    dataManager.deleteCourse(courseId).then(() => {
+      setCourses();
+      setTotalCoursesMembers();
+    });
   };
 
   const leaveCourse = (e) => {
     e.preventDefault();
-    dataManager.leaveCourse(courseId).then(() => setCourses());;
+    dataManager.leaveCourse(courseId).then(() => {
+      setCourses();
+      setTotalCoursesMembers();
+    });
   };
 
   return (
@@ -56,7 +64,13 @@ export const Course = ({
                   />
                 </>
               )}
-              <p className="card-text h5 font-weight-bold mt-3">$ {price}</p>
+              <p className="card-text h5 font-weight-bold mt-3">
+                <i className="bi bi-people-fill"></i>{" "}
+                {totalCoursesMembers.map(
+                  (o) => o.courseId === courseId && o.totalCourseClients
+                )}
+                <span className="ms-4">$ {price} </span>
+              </p>
               <p className="card-text font-weight-bold">
                 <span className="txt-color-brown">
                   <i className="bi bi-boxes fa-lg me-1 fa-fw label-icons-signin"></i>

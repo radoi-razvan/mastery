@@ -2,13 +2,16 @@ import React, { useEffect } from "react";
 import { Course } from "../Course";
 import { STATE } from "../../state";
 import { useAtom } from "jotai";
+import { useUpdateAtom } from "jotai/utils";
 
 
 export const Courses = () => {
   const [courses, setCourses] = useAtom(STATE.COURSES);
+  const setTotalCoursesMembers = useUpdateAtom(STATE.COURSES_MEMBERS);
 
   useEffect(() => {
     setCourses();
+    setTotalCoursesMembers();
   }, []);
 
   return (

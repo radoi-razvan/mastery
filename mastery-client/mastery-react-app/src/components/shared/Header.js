@@ -77,7 +77,8 @@ export const Header = () => {
                       (splitLocation[1] === "courses" &&
                         splitLocation.length === 2) ||
                       (splitLocation[1] === "courses" &&
-                        location.pathname !== "/courses/add")
+                        location.pathname !== "/courses/add" &&
+                        location.pathname !== "/courses/clients/details")
                         ? "active-nav-btns"
                         : ""
                     } nav-btn`}
@@ -99,7 +100,19 @@ export const Header = () => {
                     Add Course
                   </Link>
                 </li>
-                
+                <li className="nav-item">
+                  <Link
+                    className={`nav-link active ${
+                      location.pathname === "/courses/clients/details"
+                        ? "active-nav-btns"
+                        : ""
+                    } nav-btn`}
+                    aria-current="page"
+                    to="/courses/clients/details"
+                  >
+                    Clients
+                  </Link>
+                </li>
               </>
             ) : (
               <>

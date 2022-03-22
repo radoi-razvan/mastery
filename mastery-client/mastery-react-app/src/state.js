@@ -27,6 +27,22 @@ export const STATE = {
       set(STATE.TESTIMONIALS_LIST, testimonials);
     }
   ),
+  TOTAL_COURSES_MEMBERS: atom([]),
+  COURSES_MEMBERS: atom(
+    (get) => get(STATE.TOTAL_COURSES_MEMBERS),
+    async (get, set) => {
+      const courses_members = await dataManager.getTotalClients();
+      set(STATE.TOTAL_COURSES_MEMBERS, courses_members);
+    }
+  ),
+  CLIENTS_LIST: atom([]),
+  CLIENTS: atom(
+    (get) => get(STATE.CLIENTS_LIST),
+    async (get, set) => {
+      const clients = await dataManager.getClientsDetails();
+      set(STATE.CLIENTS_LIST, clients);
+    }
+  ),
 };
 
 export const ATTENDED_COURSES = atom([]);

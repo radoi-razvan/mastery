@@ -79,7 +79,7 @@ namespace Mastery.Controllers
         [Authorize(Roles = "Mentor")]
         [HttpGet]
         [Route("clients/details")]
-        public async Task<ActionResult<IEnumerable<CourseClientDTO>>> GetCourseClientsDetails()
+        public async Task<ActionResult<IEnumerable<ClientDetailsDTO>>> GetCourseClientsDetails()
         {
             var mentorId = _userManager.GetUserId(User);
             var courseClients = await _clientService.GetCourseClients(mentorId);

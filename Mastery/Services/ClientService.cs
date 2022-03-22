@@ -67,13 +67,36 @@ namespace Mastery.Services
             return totalCoursesClientsList;
         }
 
-        public async Task<IEnumerable<CourseClientDTO>> GetCourseClients(string userId)
+        public async Task<IEnumerable<ClientDetailsDTO>> GetCourseClients(string userId)
         {
+            List<ClientDetailsDTO> result = new();
             var mentorCoursesIds = _db.Courses.Where(c => c.MentorId == userId)
                 .Select(c => c.CourseId);
+            var clients = _db.CourseClients.Where(cc => mentorCoursesIds.Contains(cc.CourseId));
+            foreach (var client in clients)
+            {
+                var userDetails = await _db.Users.Where(u => u.Id == client.ClientId).FirstAsync();
+                var course = await _db.Courses.Where(c => c.CourseId == client.CourseId).FirstAsync();
 
-            return _mapper.Map<IEnumerable<CourseClientDTO>>(await _db.CourseClients
-                .Where(cc => mentorCoursesIds.Contains(cc.CourseId)).ToListAsync());
+                ClientDetailsDTO clientDetails = new()
+                {
+                    CourseClientId = client.CourseClientId,
+                    CourseId = client.CourseId,
+                    ClientId = client.ClientId,
+                    LastYearIncomeRange = client.LastYearIncomeRange,
+                    JobTitle = client.JobTitle,
+                    FirstName = userDetails.FirstName,
+                    LastName = userDetails.LastName,
+                    Country = userDetails.Country,
+                    City = userDetails.City,
+                    Email = userDetails.Email,
+                    PhoneNumber = userDetails.PhoneNumber,
+                    CourseName = course.Name,
+                };
+                result.Add(clientDetails); 
+            }
+
+            return result;
         }
 
         public MentorDTO GetMentor(string userId)

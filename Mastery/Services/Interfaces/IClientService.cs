@@ -8,7 +8,7 @@ namespace Mastery.Services.Interfaces
         Task Remove(int courseId, string userId);
         List<object> GetTotalCoursesClients();
         Task <IEnumerable<CourseDTO>> GetAttendedCourses(string clientId);
-        Task <IEnumerable<CourseClientDTO>> GetCourseClients(string userId);
+        Task <IEnumerable<ClientDetailsDTO>> GetCourseClients(string userId);
         MentorDTO GetMentor(string userId);
     }
 }
