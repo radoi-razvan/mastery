@@ -38,7 +38,7 @@ export const JoinCourseForm = () => {
   ) : (
     <>
       <ToastContainer />
-      <div className="card">
+      <div className="card join-course-form-width">
         <div className="container">
           <section>
             <div className="row d-flex justify-content-center align-items-center">
