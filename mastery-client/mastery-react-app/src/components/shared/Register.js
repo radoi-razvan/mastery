@@ -7,7 +7,7 @@ export const Register = () => {
   const [redirect, setRedirect] = useState(false);
   const invalidOperationNotification = () => {
     toast.error(
-      `Password require unique character, non alphanumeric, lower case, upper case, digit and minimum length of 6!`,
+      `Password requires unique character, non alphanumeric, lower case, upper case, digit and minimum length of 6!`,
       {
         position: toast.POSITION.BOTTOM_RIGHT,
       }
@@ -55,7 +55,7 @@ export const Register = () => {
   ) : (
     <>
       <ToastContainer />
-      <div className="card">
+      <div className="card register-card-margin">
         <div className="container">
           <section>
             <div className="row d-flex justify-content-center align-items-center">
@@ -64,7 +64,7 @@ export const Register = () => {
                   <div>
                     <div className="row justify-content-center">
                       <div>
-                        <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4 txt-main-color form-txt-color">
+                        <p className="text-center h1 fw-bold mb-2 mx-1 mx-md-4 mt-4 txt-main-color form-txt-color">
                           Register
                         </p>
 

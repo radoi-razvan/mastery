@@ -30,9 +30,29 @@ namespace Mastery.Services
             return _db.Courses.Any(e => e.CourseId == id); 
         }
 
-        public async Task<IEnumerable<CourseDTO>> GetAllAsync()
+        public async Task<IEnumerable<CourseDetailsDTO>> GetAllAsync()
         {
-            return _mapper.Map<IEnumerable<CourseDTO>>(await _db.Courses.ToListAsync());
+            List<CourseDetailsDTO> coursesDetailsDTOs = new ();
+            var courses = await _db.Courses.ToListAsync();
+            foreach (var course in courses)
+            {
+                var mentor = _db.Users.Where(u => u.Id == course.MentorId).First();
+                string mentorName = $"{mentor.FirstName} {mentor.LastName}";
+
+                CourseDetailsDTO courseDetailsDTO = new ();
+                courseDetailsDTO.CourseId = course.CourseId;
+                courseDetailsDTO.Name = course.Name;
+                courseDetailsDTO.Category = course.Category;
+                courseDetailsDTO.Price = course.Price;
+                courseDetailsDTO.Description = course.Description;
+                courseDetailsDTO.StartingDate = course.StartingDate;
+                courseDetailsDTO.MentorId = course.MentorId;
+                courseDetailsDTO.MentorName = mentorName;
+
+                coursesDetailsDTOs.Add(courseDetailsDTO);
+            }
+
+            return coursesDetailsDTOs;
         }
 
         public async Task<CourseDTO> GetAsync(int id)

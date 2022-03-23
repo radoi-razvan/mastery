@@ -25,7 +25,7 @@ export const Week = ({
 
   return (
     <>
-      <div className="courses-card mb-3">
+      <div className="courses-card week-card-width mb-3">
         <div className="row no-gutters">
           <div className="d-inline-flex">
             <iframe

@@ -27,7 +27,7 @@ namespace Mastery.Controllers
         // GET: courses
         [Authorize(Roles = "Mentor,Client")]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CourseDTO>>> GetCourses()
+        public async Task<ActionResult<IEnumerable<CourseDetailsDTO>>> GetCourses()
         {
             var courses = await _courseService.GetAllAsync();
             _logger.LogInformation("All courses retrieved");

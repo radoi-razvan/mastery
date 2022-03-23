@@ -4,36 +4,33 @@ import { STATE } from "../../state";
 import { useAtom } from "jotai";
 import { useUpdateAtom } from "jotai/utils";
 
-
 export const Courses = () => {
   const [courses, setCourses] = useAtom(STATE.COURSES);
   const setTotalCoursesMembers = useUpdateAtom(STATE.COURSES_MEMBERS);
-  const [mentors, setMentors] = useAtom(STATE.MENTORS);
 
   useEffect(() => {
     setCourses();
     setTotalCoursesMembers();
-    setMentors();
   }, []);
 
   return (
     <>
       {courses.length ? (
         <div className="container-margin-top">
-            {courses.map((course, index) => (
-              <Course
-                name={course.name}
-                category={course.category}
-                price={course.price}
-                description={course.description}
-                startingDate={course.startingDate}
-                mentorId={course.mentorId}
-                courseId={course.courseId}
-                mentor={mentors.filter(mentor => mentor.mentorId === course.mentorId)[0]}
-                key={index}
-              />
-            ))}
-          </div>
+          {courses.map((course, index) => (
+            <Course
+              name={course.name}
+              category={course.category}
+              price={course.price}
+              description={course.description}
+              startingDate={course.startingDate}
+              mentorId={course.mentorId}
+              courseId={course.courseId}
+              mentorName={course.mentorName}
+              key={index}
+            />
+          ))}
+        </div>
       ) : (
         <div className="card">
           <div className="card-container">

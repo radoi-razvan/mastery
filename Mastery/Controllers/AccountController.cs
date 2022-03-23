@@ -122,7 +122,7 @@ namespace Mastery.Controllers
                         City = user.City,
                         PhoneNumber = user.PhoneNumber,
                         PhoneNumberConfirmed = user.PhoneNumberConfirmed,
-                        Role = (await _userManager.GetRolesAsync(user)).FirstOrDefault()
+                        Role = (await _userManager.GetRolesAsync(user)).First()
                     });
                 }
             }

@@ -40,7 +40,15 @@
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("/src/img/welcome-page.jpg");
   background-size: cover;
-  height: 84.1vh;
+  height: calc(100vh - 7em);
+}
+
+.footer-height {
+  height: 3em !important;
+}
+
+.header-height {
+  height: 4em !important;
 }
 
 .card {
@@ -53,6 +61,11 @@
 
 .card:hover {
   box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.4);
+}
+
+.register-card-margin {
+  margin-top: 2em;
+  margin-bottom: 2em;
 }
 
 .card-container {
@@ -110,14 +123,6 @@
   font-weight: bold;
 }
 
-.footer-height {
-  height: 3.6em !important;
-}
-
-.header-height {
-  height: 4.35em !important;
-}
-
 .font-weight-bold {
   font-weight: bold !important;
 }
@@ -170,6 +175,10 @@
   width: 50%;
   margin-top: 4em;
   background-color: white;
+}
+
+.week-card-width {
+  width: 60% !important;
 }
 
 .courses-card:hover {

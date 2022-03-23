@@ -54,7 +54,8 @@ namespace Mastery.Services
         public List<object> GetTotalCoursesClients()
         {
             List<object> totalCoursesClientsList = new List<object>() { };
-            foreach (var course in _db.Courses)
+            var courses = _db.Courses;
+            foreach (var course in courses)
             {
                 var totalCourseClients = _db.CourseClients
                     .Count(cp => cp.CourseId == course.CourseId);

@@ -43,14 +43,6 @@ export const STATE = {
       set(STATE.CLIENTS_LIST, clients);
     }
   ),
-  MENTORS_LIST: atom([]),
-  MENTORS: atom(
-    (get) => get(STATE.MENTORS_LIST),
-    async (get, set) => {
-      const mentors = await dataManager.getMentors();
-      set(STATE.MENTORS_LIST, mentors);
-    }
-  ),
 };
 
 export const ATTENDED_COURSES = atom([]);
