@@ -33,6 +33,7 @@ export const WeekForm = () => {
     if (splitPath[splitPath.length - 1] === "add") {
       dataManager
         .postWeek(params.courseId, {
+          file: e.target.file.files[0],
           number: e.target.number.value,
           videoLink: e.target.videoLink.value,
           homeworkTitle: e.target.homeworkTitle.value,
@@ -44,6 +45,7 @@ export const WeekForm = () => {
     } else {
       dataManager
         .putWeek(params.courseId, params.weekId, {
+          file: e.target.file.files[0],
           number: e.target.number.value,
           videoLink: e.target.videoLink.value,
           homeworkTitle: e.target.homeworkTitle.value,
@@ -63,7 +65,7 @@ export const WeekForm = () => {
   ) : (
     <>
       <ToastContainer />
-      <div className="card">
+      <div className="card add-week-form-width">
         <div className="container">
           <section>
             <div className="row d-flex justify-content-center align-items-center">
@@ -108,7 +110,7 @@ export const WeekForm = () => {
                               className="form-label form-txt-labels"
                             >
                               <i className="bi bi-easel2-fill fa-lg me-1 fa-fw label-icons-signin"></i>
-                              Title
+                              Homework Title
                             </label>
                             <input
                               type="text"
@@ -147,6 +149,23 @@ export const WeekForm = () => {
                               className="form-control"
                               id="consultationCallLink"
                               name="consultationCallLink"
+                              required
+                            />
+                          </div>
+                          <div className="mb-3 col col-md-6">
+                            <label
+                              htmlFor="file"
+                              className="form-label form-txt-labels"
+                            >
+                              <i className="bi bi-file-pdf-fill fa-lg me-1 fa-fw label-icons-signin"></i>
+                              Homework .pdf
+                            </label>
+                            <input
+                              type="file"
+                              className="form-control" 
+                              accept="application/pdf"                           
+                              id="file"
+                              name="file"
                               required
                             />
                           </div>

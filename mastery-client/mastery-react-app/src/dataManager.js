@@ -192,32 +192,45 @@ export const dataManager = {
       .catch((e) => console.error(e));
     return response.data;
   },
-  postWeek: async (courseId, formData) => {
+  postWeek: async (courseId, formFields) => {
+    const formData = new FormData();
+    formData.append("file", formFields.file);
+    formData.append("number", formFields.number);
+    formData.append("videoLink", formFields.videoLink);
+    formData.append("homeworkTitle", formFields.homeworkTitle);
+    formData.append("consultationCallLink", formFields.consultationCallLink);
     const response = await axios
       .post(
         `${process.env.REACT_APP_BASE_URL_BACKEND}/courses/${courseId}/weeks`,
+        formData,
         {
-          number: formData.number,
-          videoLink: formData.videoLink,
-          homeworkTitle: formData.homeworkTitle,
-          consultationCallLink: formData.consultationCallLink,
-        },
-        { withCredentials: true }
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          withCredentials: true,
+        }
       )
       .catch((e) => console.error(e));
     return response;
   },
-  putWeek: async function (courseId, weekId, formData) {
+  putWeek: async (courseId, weekId, formFields) => {
+    const formData = new FormData();
+    formData.append("file", formFields.file);
+    formData.append("number", formFields.number);
+    formData.append("videoLink", formFields.videoLink);
+    formData.append("homeworkTitle", formFields.homeworkTitle);
+    formData.append("consultationCallLink", formFields.consultationCallLink);
+
     const response = await axios
       .put(
         `${process.env.REACT_APP_BASE_URL_BACKEND}/courses/${courseId}/weeks/${weekId}`,
+        formData,
         {
-          number: formData.number,
-          videoLink: formData.videoLink,
-          homeworkTitle: formData.homeworkTitle,
-          consultationCallLink: formData.consultationCallLink,
-        },
-        { withCredentials: true }
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          withCredentials: true,
+        }
       )
       .catch((e) => console.error(e));
     return response;

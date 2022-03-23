@@ -1,4 +1,5 @@
 ﻿using Mastery.DTOs;
+using Mastery.Models;
 
 namespace Mastery.Services.Interfaces
 {
@@ -10,5 +11,6 @@ namespace Mastery.Services.Interfaces
         Task<CourseDTO> GetAsync(int id);
         Task<IEnumerable<CourseDetailsDTO>> GetAllAsync();
         bool CourseExists(int id);
+        void DeleteFile(Week week);
     }
 }

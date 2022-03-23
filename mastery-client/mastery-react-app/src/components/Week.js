@@ -66,6 +66,16 @@ export const Week = ({
                   </a>
                 </span>
               </p>
+              <p className="card-text font-weight-bold mt-3">
+                <a
+                  id="downloadLink"
+                  href={`${process.env.REACT_APP_BASE_URL_BACKEND}/courses/${params.courseId}/weeks/${weekId}/download`}
+                  className="btn form-btn"
+                  download 
+                >
+                  Download Homework
+                </a>
+              </p>
             </div>
           </div>
         </div>

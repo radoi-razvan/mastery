@@ -69,6 +69,11 @@ namespace Mastery.Services
             var courseWeeksIds = courseWeeks.Select(cw => cw.WeekId).ToList();
             var weeks = _db.Weeks.Where(w => courseWeeksIds.Contains(w.WeekId));
 
+            foreach (var week in weeks)
+            {
+                DeleteFile(week);
+            }
+
             foreach (var testimonial in testimonials)
             {
                 _db.Testimonials.Remove(testimonial);
@@ -116,6 +121,19 @@ namespace Mastery.Services
             else
             {
                 throw new ArgumentNullException(nameof(course));
+            }
+        }
+
+        public void DeleteFile(Week week)
+        {
+            string currentDirectory = Directory.GetCurrentDirectory();
+            string currentFilePathString = $"{currentDirectory}\\HomeworkFiles";
+            currentFilePathString = Path.Combine(currentFilePathString,
+                $"Week_{week.Number}_{week.HomeworkTitle}_{week.WeekId}.pdf");
+
+            if (File.Exists(currentFilePathString))
+            {
+                File.Delete(currentFilePathString);
             }
         }
     }

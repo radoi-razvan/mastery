@@ -248,3 +248,7 @@
 .margin-right-icon {
   margin-right: 1em;
 }
+
+.add-week-form-width {
+  width: 45% !important;
+}

@@ -50,8 +50,13 @@ namespace Mastery.Controllers
         // PUT: courses/{courseId}/weeks/id
         [Authorize(Roles = "Mentor")]
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutWeek(int id, WeekDTO week)
+        public async Task<IActionResult> PutWeek(int id, [FromForm]  WeekFormDTO week)
         {
+            if (week.File.FileName.Split('.')[^1] != "pdf")
+            {
+                return BadRequest("Invalid file format!");
+            }
+
             try
             {
                 await _weekService.UpdateAsync(id, week);
@@ -68,6 +73,7 @@ namespace Mastery.Controllers
                     throw;
                 }
             }
+
             _logger.LogInformation("Week edited");
 
             return NoContent();
@@ -76,8 +82,13 @@ namespace Mastery.Controllers
         // POST: courses/{courseId}/weeks
         [Authorize(Roles = "Mentor")]
         [HttpPost]
-        public async Task<ActionResult<WeekDTO>> PostWeek(int courseId, WeekDTO week)
+        public async Task<ActionResult<WeekDTO>> PostWeek(int courseId, [FromForm] WeekFormDTO week)
         {
+            if (week.File.FileName.Split('.')[^1] != "pdf")
+            {
+                return BadRequest("Invalid file format!");
+            }
+
             await _weekService.AddAsync(courseId, week);
             _logger.LogInformation("A new week added");
 
@@ -105,6 +116,21 @@ namespace Mastery.Controllers
         private bool WeekExists(int id)
         {
             return _weekService.WeekExists(id);
+        }
+
+        // GET: courses/{courseId}/weeks/{weekId}/download
+        [Authorize(Roles = "Mentor,Client")]
+        [HttpGet("{weekId}/download")]
+        public FileResult DownloadFile(int weekId)
+        {
+            var downloadFileDTO = _weekService.DownloadFile(weekId);
+
+            Response.Headers.Add("content-disposition", $"attachment; filename={downloadFileDTO.FileName}");
+
+            _logger.LogInformation("Operation successful");
+
+            return File(downloadFileDTO.FileBytes, "application/octet-stream", downloadFileDTO.FileName);
+
         }
 
 
