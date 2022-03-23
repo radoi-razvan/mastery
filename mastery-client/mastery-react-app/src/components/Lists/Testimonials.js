@@ -35,7 +35,7 @@ export const Testimonials = () => {
         <div className="card">
           <div className="card-container">
             <p className="text-center h3 fw-bold mb-5 mx-1 mx-md-4 mt-4 txt-main-color form-txt-color">
-              There are no weeks
+              There are no testimonials
             </p>
           </div>
         </div>
