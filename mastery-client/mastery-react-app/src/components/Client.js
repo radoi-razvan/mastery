@@ -13,7 +13,7 @@ export const Client = ({
 }) => {
   return (
     <>
-      <div className="card mb-5">
+      <div className="clients-card mb-5">
         <div className="container">
           <section>
             <div className="row d-flex justify-content-center align-items-center">
