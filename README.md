@@ -10,6 +10,7 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#main-features">Main Features</a></li>
+         <li><a href="#integrated-services">Integrated Services</a></li>
         <li><a href="#built-with">Built With</a></li>
         <li><a href="#visuals">Visuals</a></li>
       </ul>
@@ -32,7 +33,7 @@
 
 ![main_page.jpg][main-page]
 
-A mentoring app where you can organize self development and business courses from wherever you are and make sure your clients achieve their desired outcomes. Used technologies: ASP.NET Core, C#, SQL Server, HTML, CSS, Bootstrap, JavaScript, React.
+A mentoring app where you can organize self development and business courses from wherever you are and make sure your clients achieve their desired outcomes. Used technologies: ASP.NET Core, C#, SQL Server, HTML, CSS, Bootstrap, JavaScript, React, Firebase.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -46,10 +47,12 @@ A mentoring app where you can organize self development and business courses fro
 - The mentor can perform CRUD operations on his owned courses only
 - The mentor has access to the details of the clients that attend his courses
 - The client can enroll to a course or cancel his membership 
+- The client has access to a course content only if he is enrolled
 - Total course members display
 - Toaster notifications
 - Active page display
 - PDF upload & download
+- Firebase image upload & download
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -73,6 +76,13 @@ Database Management:
 IDE:
 * [Microsoft Visual Studio][visual-studio]
 * [Microsoft Visual Studio Code][visual-studio-code]
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+### Integrated Services
+
+Firebase:
+* [Firebase][firebase]
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -197,6 +207,8 @@ REACT_APP_BASE_URL_FRONTEND=http://localhost:xxxx
 [visual-studio-code]: https://code.visualstudio.com/
 
 [radoi-razvan]: https://github.com/radoi-razvan
+
+[firebase]: https://firebase.google.com/
 
 [swagger-view]: project_photos/swagger_view.jpg
 [main-page]: project_photos/main_page.jpg

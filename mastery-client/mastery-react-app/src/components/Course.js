@@ -146,14 +146,34 @@ export const Course = ({
                   </Link>
                 </>
               )}
-              {user.role === "Client" &&
-                (!attendedCourses.includes(courseId) ? (
+              {user.id !== mentorId && user.role === "Mentor" && (
+                <>
                   <Link
-                    to={`/courses/${courseId}/clients`}
+                    to={`/courses/${courseId}/testimonials`}
+                    state={{ mentorId: mentorId }}
                     className="btn nav-btn"
                   >
-                    Join
+                    Testimonials
                   </Link>
+                </>
+              )}
+              {user.role === "Client" &&
+                (!attendedCourses.includes(courseId) ? (
+                  <>
+                    <Link
+                      to={`/courses/${courseId}/testimonials`}
+                      state={{ mentorId: mentorId }}
+                      className="btn nav-btn"
+                    >
+                      Testimonials
+                    </Link>
+                    <Link
+                      to={`/courses/${courseId}/clients`}
+                      className="btn nav-btn"
+                    >
+                      Join
+                    </Link>
+                  </>
                 ) : (
                   <>
                     <Link
