@@ -175,6 +175,49 @@ REACT_APP_BASE_URL_BACKEND=https://localhost:xxxxx
 REACT_APP_BASE_URL_FRONTEND=http://localhost:xxxx
 
 ```
+- In Visual Studio Code in the `src` add a folder called `Firebase` and add a `firebaseConfig.js` file in it using this template but with your own data: 
+```
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  uploadBytes,
+  getDownloadURL,
+  deleteObject,
+} from "firebase/storage";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: xxxx,
+  authDomain: xxxx,
+  projectId: xxxx,
+  storageBucket: xxxx,
+  messagingSenderId: xxxx,
+  appId: xxxx,
+  measurementId: xxxx,
+};
+
+const firebaseApp = initializeApp(firebaseConfig);
+const analytics = getAnalytics(firebaseApp);
+const MasteryStorage = getStorage();
+
+export {
+  firebaseApp,
+  analytics,
+  MasteryStorage,
+  ref,
+  uploadBytesResumable,
+  uploadBytes,
+  getDownloadURL,
+  deleteObject,
+};
+```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
