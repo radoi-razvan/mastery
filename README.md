@@ -47,6 +47,9 @@ A mentoring app where you can organize self development and business courses fro
 - The mentor has access to the details of the clients that attend his courses
 - The client can enroll to a course or cancel his membership 
 - Total course members display
+- Toaster notifications
+- Active page display
+- PDF upload & download
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
