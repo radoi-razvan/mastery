@@ -124,6 +124,10 @@ Mentor Weeks Page:
 
 ![owned_weeks.jpg][owned-weeks]
 
+Download File:
+
+![download_file.jpg][download-file]
+
 Add Week Form:
 
 ![add_week_form.jpg][add-week-form]
@@ -220,6 +224,7 @@ REACT_APP_BASE_URL_FRONTEND=http://localhost:xxxx
 [add-course-form]: project_photos/add_course_form.jpg
 [edit-course-form]: project_photos/edit_course_form.jpg
 [owned-weeks]: project_photos/owned_weeks.jpg
+[download-file]:project_photos/download_file.jpg
 [add-week-form]: project_photos/add_week_form.jpg
 [edit-week-form]: project_photos/edit_week_form.jpg
 [owned-testimonials]: project_photos/owned_testimonials.jpg
