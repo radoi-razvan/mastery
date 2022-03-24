@@ -120,7 +120,7 @@ Edit Course Form:
 
 ![edit_course_form.jpg][edit-course-form]
 
-Owner Weeks Page:
+Mentor Weeks Page:
 
 ![owned_weeks.jpg][owned-weeks]
 
@@ -132,7 +132,7 @@ Edit Week Form:
 
 ![edit_week_form.jpg][edit-week-form]
 
-Owner Testimonial Page:
+Mentor Testimonial Page:
 
 ![owned_testimonials.jpg][owned-testimonials]
 
