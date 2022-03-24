@@ -30,7 +30,7 @@ export const Week = ({
           <div className="d-inline-flex">
             <iframe
               width="320"
-              height="245"
+              height="280"
               title={`${weekId}`}
               src={`${videoLink}`}
               className=""
@@ -53,7 +53,26 @@ export const Week = ({
                   />
                 </>
               )}
-              <p className="card-text font-weight-bold mt-3">
+              <p className="card-text description-txt mt-3">
+                Step 1: Watch this week's video.
+              </p>
+              <p className="card-text description-txt">
+                Step 2: Solve the current homework.
+              </p>
+              <p className="card-text font-weight-bold">
+                <a
+                  id="downloadLink"
+                  href={`${process.env.REACT_APP_BASE_URL_BACKEND}/courses/${params.courseId}/weeks/${weekId}/download`}
+                  className="btn form-btn"
+                  download
+                >
+                  Download Homework
+                </a>
+              </p>
+              <p className="card-text description-txt">
+                Step 3: Discuss what you've learned on your next call.
+              </p>
+              <p className="card-text font-weight-bold">
                 <span className="txt-color-brown">
                   <i className="bi bi-camera-video-fill fa-lg me-1 fa-fw label-icons-signin"></i>
                   <a
@@ -65,16 +84,6 @@ export const Week = ({
                     Consultation Call
                   </a>
                 </span>
-              </p>
-              <p className="card-text font-weight-bold mt-3">
-                <a
-                  id="downloadLink"
-                  href={`${process.env.REACT_APP_BASE_URL_BACKEND}/courses/${params.courseId}/weeks/${weekId}/download`}
-                  className="btn form-btn"
-                  download 
-                >
-                  Download Homework
-                </a>
               </p>
             </div>
           </div>

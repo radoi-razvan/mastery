@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import noImgPlaceholder from "../img/NoImagePlaceholder.jpg";
 import { useAtomValue, useUpdateAtom } from "jotai/utils";
 import { STATE, userSetter, attendedCoursesSetter } from "../state";
 import { dataManager } from "../dataManager";
+import {
+  MasteryStorage,
+  getDownloadURL,
+  ref,
+  deleteObject,
+} from "../Firebase/firebaseConfig.js";
 
 export const Course = ({
   name,
@@ -21,12 +27,33 @@ export const Course = ({
   const totalCoursesMembers = useAtomValue(STATE.COURSES_MEMBERS);
   const setTotalCoursesMembers = useUpdateAtom(STATE.COURSES_MEMBERS);
 
+  useEffect(() => {
+    let storageRef = ref(MasteryStorage, `/images/course_${courseId}`);
+    getDownloadURL(storageRef).then((response) => {
+      const imgElement = document.getElementById(`courseImage${courseId}`);
+      imgElement.setAttribute("src", response);
+    });
+  }, []);
+
   const deleteEvent = (e) => {
     e.preventDefault();
-    dataManager.deleteCourse(courseId).then(() => {
-      setCourses();
-      setTotalCoursesMembers();
-    });
+
+    const storage = MasteryStorage;
+    const imgRef = ref(storage, `/images/course_${courseId}`);
+    deleteObject(imgRef)
+      .then(() => {
+        dataManager.deleteCourse(courseId).then(() => {
+          setCourses();
+          setTotalCoursesMembers();
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        dataManager.deleteCourse(courseId).then(() => {
+          setCourses();
+          setTotalCoursesMembers();
+        });
+      });
   };
 
   const leaveCourse = (e) => {
@@ -45,9 +72,9 @@ export const Course = ({
             <img
               src={noImgPlaceholder}
               className="card-img courses-img"
-              alt="no img"
+              alt={name}
+              id={`courseImage${courseId}`}
             />
-            {/* <img src="Error.src" onerror="this.src='fallback-img.jpg'"/> */}
             <div className="card-body">
               <p className="h4 courses-card-title font-weight-bold d-inline">
                 {name}
@@ -87,15 +114,15 @@ export const Course = ({
                 </span>
               </p>
               <p className="card-text description-txt">{description}</p>
-              <Link
-                to={`/courses/${courseId}/weeks`}
-                state={{ mentorId: mentorId }}
-                className="btn nav-btn"
-              >
-                Weeks
-              </Link>
               {user.id === mentorId && (
                 <>
+                  <Link
+                    to={`/courses/${courseId}/weeks`}
+                    state={{ mentorId: mentorId }}
+                    className="btn nav-btn"
+                  >
+                    Weeks
+                  </Link>
                   <Link
                     to={`/courses/${courseId}/weeks/add`}
                     state={{ mentorId: mentorId }}
@@ -103,17 +130,13 @@ export const Course = ({
                   >
                     +
                   </Link>
-                </>
-              )}
-              <Link
-                to={`/courses/${courseId}/testimonials`}
-                state={{ mentorId: mentorId }}
-                className="btn nav-btn"
-              >
-                Testimonials
-              </Link>
-              {user.id === mentorId && (
-                <>
+                  <Link
+                    to={`/courses/${courseId}/testimonials`}
+                    state={{ mentorId: mentorId }}
+                    className="btn nav-btn"
+                  >
+                    Testimonials
+                  </Link>
                   <Link
                     to={`/courses/${courseId}/testimonials/add`}
                     state={{ mentorId: mentorId }}
@@ -132,9 +155,28 @@ export const Course = ({
                     Join
                   </Link>
                 ) : (
-                  <div className="btn nav-btn" onClick={(e) => leaveCourse(e)}>
-                    Leave
-                  </div>
+                  <>
+                    <Link
+                      to={`/courses/${courseId}/weeks`}
+                      state={{ mentorId: mentorId }}
+                      className="btn nav-btn"
+                    >
+                      Weeks
+                    </Link>
+                    <Link
+                      to={`/courses/${courseId}/testimonials`}
+                      state={{ mentorId: mentorId }}
+                      className="btn nav-btn"
+                    >
+                      Testimonials
+                    </Link>
+                    <div
+                      className="btn nav-btn"
+                      onClick={(e) => leaveCourse(e)}
+                    >
+                      Leave
+                    </div>
+                  </>
                 ))}
             </div>
           </div>

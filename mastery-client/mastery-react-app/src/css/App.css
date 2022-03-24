@@ -151,7 +151,6 @@
 }
 .courses-img {
   width: 24em;
-  border: 6px solid #333533;
   display: inline-block;
   height: 100%;
   vertical-align: middle;
@@ -250,5 +249,9 @@
 }
 
 .add-week-form-width {
+  width: 45% !important;
+}
+
+.add-course-form-width {
   width: 45% !important;
 }

@@ -83,10 +83,10 @@ namespace Mastery.Controllers
         public async Task<ActionResult<CourseDTO>> PostCourse(CourseDTO course)
         {
             course.MentorId = _userManager.GetUserId(User);
-            await _courseService.AddAsync(course);
+            CourseDTO lastAddedCourse = await _courseService.AddAsync(course);
             _logger.LogInformation("A new course added");
 
-            return CreatedAtAction("PostCourse", new { message = "A new course added" });
+            return CreatedAtAction("PostCourse", lastAddedCourse);
         }
 
         // DELETE: courses/5

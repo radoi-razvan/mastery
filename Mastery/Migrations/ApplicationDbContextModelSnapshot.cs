@@ -31,6 +31,7 @@ namespace Mastery.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("City")
+                        .IsRequired()
                         .HasColumnType("varchar(100)");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -38,6 +39,7 @@ namespace Mastery.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Country")
+                        .IsRequired()
                         .HasColumnType("varchar(100)");
 
                     b.Property<string>("Discriminator")
@@ -52,9 +54,11 @@ namespace Mastery.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("varchar(30)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -122,6 +126,7 @@ namespace Mastery.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MentorId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
@@ -285,15 +290,15 @@ namespace Mastery.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "cff90976-be31-4b5f-8310-d6c2368237d2",
-                            ConcurrencyStamp = "a6818ea1-acb1-4a9d-b962-9f30740dc4c2",
+                            Id = "88bf89c1-0378-4d8e-bbd9-63840a69b41e",
+                            ConcurrencyStamp = "916566ca-2960-46fb-887d-5af4e42ac82f",
                             Name = "Mentor",
                             NormalizedName = "MENTOR"
                         },
                         new
                         {
-                            Id = "fc834abb-ee0d-44cc-b7fc-bc5030ed1e4d",
-                            ConcurrencyStamp = "a45b1910-01a7-46d5-8934-7abd53da05c8",
+                            Id = "b8c4d0d1-e8bc-44e5-8347-99aeaaa5e727",
+                            ConcurrencyStamp = "8db8ea7e-9330-4def-8334-badccab4f644",
                             Name = "Client",
                             NormalizedName = "CLIENT"
                         });
@@ -423,7 +428,9 @@ namespace Mastery.Migrations
                 {
                     b.HasOne("Mastery.Models.Mentor", "Mentor")
                         .WithMany("Courses")
-                        .HasForeignKey("MentorId");
+                        .HasForeignKey("MentorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Mentor");
                 });

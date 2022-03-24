@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import { Navigate, useLocation, useParams } from "react-router-dom";
 import { dataManager } from "../../dataManager";
 import { ToastContainer, toast } from "react-toastify";
+import {
+  MasteryStorage,
+  ref,
+  uploadBytes,
+} from "../../Firebase/firebaseConfig";
 
 export const CourseForm = () => {
   const [redirect, setRedirect] = useState(false);
@@ -23,7 +28,12 @@ export const CourseForm = () => {
         typeof response !== "undefined" &&
         (response.status === 201 || response.status === 204)
       ) {
-        setRedirect(true);
+        const courseId =
+          response.status === 201 ? response.data.courseId : params.courseId;
+        const storageRef = ref(MasteryStorage, `/images/course_${courseId}`);
+        uploadBytes(storageRef, e.target.image.files[0]).then(() => {
+          setRedirect(true);
+        });
       } else {
         operationFailedNotification();
       }
@@ -61,7 +71,7 @@ export const CourseForm = () => {
   ) : (
     <>
       <ToastContainer />
-      <div className="card">
+      <div className="card add-course-form-width">
         <div className="container">
           <section>
             <div className="row d-flex justify-content-center align-items-center">
@@ -164,6 +174,23 @@ export const CourseForm = () => {
                               className="form-control"
                               id="startingDate"
                               name="startingDate"
+                              required
+                            />
+                          </div>
+                          <div className="mb-3 col col-md-6">
+                            <label
+                              htmlFor="image"
+                              className="form-label form-txt-labels"
+                            >
+                              <i className="bi bi-image fa-lg me-1 fa-fw label-icons-signin"></i>
+                              Course Image
+                            </label>
+                            <input
+                              type="file"
+                              className="form-control"
+                              accept="image/*"
+                              id="image"
+                              name="image"
                               required
                             />
                           </div>

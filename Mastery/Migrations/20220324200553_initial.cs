@@ -28,10 +28,10 @@ namespace Mastery.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    FirstName = table.Column<string>(type: "varchar(30)", nullable: true),
-                    LastName = table.Column<string>(type: "varchar(30)", nullable: true),
-                    Country = table.Column<string>(type: "varchar(100)", nullable: true),
-                    City = table.Column<string>(type: "varchar(100)", nullable: true),
+                    FirstName = table.Column<string>(type: "varchar(30)", nullable: false),
+                    LastName = table.Column<string>(type: "varchar(30)", nullable: false),
+                    Country = table.Column<string>(type: "varchar(100)", nullable: false),
+                    City = table.Column<string>(type: "varchar(100)", nullable: false),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -186,7 +186,7 @@ namespace Mastery.Migrations
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StartingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    MentorId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    MentorId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -195,7 +195,8 @@ namespace Mastery.Migrations
                         name: "FK_Course_AspNetUsers_MentorId",
                         column: x => x.MentorId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -277,12 +278,12 @@ namespace Mastery.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "cff90976-be31-4b5f-8310-d6c2368237d2", "a6818ea1-acb1-4a9d-b962-9f30740dc4c2", "Mentor", "MENTOR" });
+                values: new object[] { "88bf89c1-0378-4d8e-bbd9-63840a69b41e", "916566ca-2960-46fb-887d-5af4e42ac82f", "Mentor", "MENTOR" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "fc834abb-ee0d-44cc-b7fc-bc5030ed1e4d", "a45b1910-01a7-46d5-8934-7abd53da05c8", "Client", "CLIENT" });
+                values: new object[] { "b8c4d0d1-e8bc-44e5-8347-99aeaaa5e727", "8db8ea7e-9330-4def-8334-badccab4f644", "Client", "CLIENT" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

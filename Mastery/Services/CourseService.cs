@@ -18,11 +18,14 @@ namespace Mastery.Services
             _mapper = mapper;
         }
 
-        public async Task AddAsync(CourseDTO item)
+        public async Task<CourseDTO> AddAsync(CourseDTO item)
         {
             var model = _mapper.Map<Course>(item);
             await _db.Courses.AddAsync(model);
             await _db.SaveChangesAsync();
+
+            int maxCourseId = _db.Courses.Max(c => c.CourseId);
+            return _mapper.Map<CourseDTO>(_db.Courses.Where(c => c.CourseId == maxCourseId).First());
         }
 
         public bool CourseExists(int id)

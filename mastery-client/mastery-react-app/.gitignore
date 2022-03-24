@@ -35,3 +35,5 @@ node_modules
 !.vscode/launch.json
 !.vscode/extensions.json
 *.code-workspace
+
+firebaseConfig.js
